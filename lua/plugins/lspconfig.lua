@@ -6,6 +6,38 @@ return {
       -- Diable keymap "Signature help"
       keys[#keys + 1] = { "<C-k>", false, mode = "i" }
     end,
+    opts = {
+      setup = {
+        emmet_ls = function(_, opts)
+          opts.filetypes = {
+            "css",
+            "eruby",
+            "html",
+            "javascriptreact",
+            "less",
+            "sass",
+            "scss",
+            "svelte",
+            "pug",
+            "typescriptreact",
+            "vue",
+            "twig",
+          }
+        end,
+      },
+    },
+  },
+  {
+    "jose-elias-alvarez/null-ls.nvim",
+    opts = function(_, opts)
+      local nls = require("null-ls")
+      table.insert(
+        opts.sources,
+        nls.builtins.formatting.prettier.with({
+          extra_filetypes = { "twig" },
+        })
+      )
+    end,
   },
   {
     "williamboman/mason.nvim",
