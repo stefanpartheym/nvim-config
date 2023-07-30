@@ -1,4 +1,13 @@
 return {
+  {
+    "echasnovski/mini.comment",
+    opts = {
+      options = {
+        ignore_blank_lines = true,
+      },
+    },
+  },
+
   -- Use <tab> for completion and snippets (supertab)
   -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
