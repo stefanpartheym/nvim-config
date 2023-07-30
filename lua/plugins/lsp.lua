@@ -56,6 +56,9 @@ return {
         "deno",
         "prettier",
 
+        -- shell
+        "shfmt",
+
         -- c/cpp
         "clangd",
         "clang-format",
