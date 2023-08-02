@@ -57,6 +57,7 @@ return {
         "prettier",
 
         -- shell
+        "bash-language-server",
         "shfmt",
 
         -- c/cpp
@@ -65,6 +66,9 @@ return {
 
         -- json
         "fixjson",
+
+        -- dockerfile
+        "hadolint",
 
         -- zig
         "zls",
