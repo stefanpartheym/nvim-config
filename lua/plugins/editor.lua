@@ -8,6 +8,11 @@ return {
           hide_dotfiles = false,
           hide_gitignored = false,
         },
+        window = {
+          mappings = {
+            ["<Bs>"] = "close_node",
+          },
+        },
       },
     },
   },
