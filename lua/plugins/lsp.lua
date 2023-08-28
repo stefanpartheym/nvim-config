@@ -74,7 +74,7 @@ return {
         "zls",
 
         -- php/shopware
-        -- "phpactor", -- requires composer to be installed
+        "phpactor", -- requires composer to be installed
         "twigcs",
       },
     },
