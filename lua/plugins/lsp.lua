@@ -74,9 +74,8 @@ return {
         "zls",
 
         -- php
+        "phpactor",
         "intelephense",
-        "phpstan",
-        "phpcs",
         "twigcs",
       },
     },
