@@ -37,12 +37,6 @@ return {
           extra_filetypes = { "twig" },
         })
       )
-      table.insert(
-        opts.sources,
-        nls.builtins.formatting.pint.with({
-          command = "pint",
-        })
-      )
     end,
   },
   {
@@ -79,9 +73,10 @@ return {
         -- zig
         "zls",
 
-        -- php/shopware
-        "phpactor", -- requires composer to be installed
-        "pint",
+        -- php
+        "intelephense",
+        "phpstan",
+        "phpcs",
         "twigcs",
       },
     },
