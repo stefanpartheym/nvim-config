@@ -37,6 +37,12 @@ return {
           extra_filetypes = { "twig" },
         })
       )
+      table.insert(
+        opts.sources,
+        nls.builtins.formatting.xmlformat.with({
+          extra_filetypes = { "xml" },
+        })
+      )
     end,
   },
   {
@@ -55,6 +61,7 @@ return {
         "vue-language-server",
         "deno",
         "prettier",
+        "xmlformatter",
 
         -- shell
         "bash-language-server",
