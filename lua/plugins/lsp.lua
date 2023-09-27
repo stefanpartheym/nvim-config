@@ -31,24 +31,14 @@ return {
     "jose-elias-alvarez/null-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
-      table.insert(
-        opts.sources,
-        nls.builtins.formatting.prettier.with({
-          extra_filetypes = { "twig" },
-        })
-      )
-      table.insert(
-        opts.sources,
-        nls.builtins.formatting.xmlformat.with({
-          extra_filetypes = { "xml" },
-        })
-      )
+      table.insert(opts.sources, nls.builtins.formatting.xmlformat)
+      table.insert(opts.sources, nls.builtins.diagnostics.twigcs)
     end,
   },
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         -- lua
         "lua-language-server",
         "stylua",
@@ -60,7 +50,6 @@ return {
         "typescript-language-server",
         "vue-language-server",
         "deno",
-        "prettier",
         "xmlformatter",
 
         -- shell
@@ -74,17 +63,13 @@ return {
         -- json
         "fixjson",
 
-        -- dockerfile
-        "hadolint",
-
         -- zig
         "zls",
 
         -- php
-        "phpactor",
         "intelephense",
         "twigcs",
-      },
-    },
+      })
+    end,
   },
 }
