@@ -23,6 +23,9 @@ return {
       local logo = require("ascii.text.neovim")
       require("dashboard").setup({
         theme = "doom",
+        hide = {
+          statusline = false,
+        },
         config = {
           header = logo.sharp,
           -- stylua: ignore
