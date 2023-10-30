@@ -28,6 +28,19 @@ return {
     },
   },
   {
+    -- @todo: Merge with nvim-lspconfig from above.
+    "neovim/nvim-lspconfig",
+    opts = function(_, opts)
+      local tsserver = opts.servers.tsserver
+      tsserver["init_options"] = {
+        preferences = {
+          -- quotePreference = "single",
+          importModuleSpecifierPreference = "project-relative",
+        },
+      }
+    end,
+  },
+  {
     "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       local nls = require("null-ls")
