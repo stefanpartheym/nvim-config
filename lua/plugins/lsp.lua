@@ -34,7 +34,7 @@ return {
       local tsserver = opts.servers.tsserver
       tsserver["init_options"] = {
         preferences = {
-          -- quotePreference = "single",
+          quotePreference = "single",
           importModuleSpecifierPreference = "project-relative",
         },
       }
