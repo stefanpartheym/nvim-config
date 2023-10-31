@@ -7,6 +7,16 @@ return {
       keys[#keys + 1] = { "<C-k>", false, mode = "i" }
     end,
     opts = {
+      servers = {
+        tsserver = {
+          init_options = {
+            preferences = {
+              quotePreference = "single",
+              importModuleSpecifierPreference = "project-relative",
+            },
+          },
+        },
+      },
       setup = {
         emmet_ls = function(_, opts)
           opts.filetypes = {
@@ -26,19 +36,6 @@ return {
         end,
       },
     },
-  },
-  {
-    -- @todo: Merge with nvim-lspconfig from above.
-    "neovim/nvim-lspconfig",
-    opts = function(_, opts)
-      local tsserver = opts.servers.tsserver
-      tsserver["init_options"] = {
-        preferences = {
-          quotePreference = "single",
-          importModuleSpecifierPreference = "project-relative",
-        },
-      }
-    end,
   },
   {
     "nvimtools/none-ls.nvim",
