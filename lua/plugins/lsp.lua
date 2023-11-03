@@ -16,10 +16,8 @@ return {
             },
           },
         },
-      },
-      setup = {
-        emmet_ls = function(_, opts)
-          opts.filetypes = {
+        emmet_ls = {
+          filetypes = {
             "css",
             "eruby",
             "html",
@@ -32,8 +30,8 @@ return {
             "typescriptreact",
             "vue",
             "twig",
-          }
-        end,
+          },
+        },
       },
     },
   },
@@ -71,7 +69,16 @@ return {
         -- php
         "intelephense",
         "twigcs",
+        "djlint",
       })
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        twig = { "djlint" },
+      },
+    },
   },
 }
