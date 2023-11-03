@@ -67,6 +67,7 @@ return {
         "zls",
 
         -- php
+        "phpactor",
         "intelephense",
         "twigcs",
         "djlint",
