@@ -79,6 +79,7 @@ return {
     opts = {
       formatters_by_ft = {
         twig = { "djlint" },
+        xml = { "xmlformat" },
       },
     },
   },
