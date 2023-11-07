@@ -30,6 +30,7 @@ return {
             "typescriptreact",
             "vue",
             "twig",
+            "handlebars",
           },
         },
       },

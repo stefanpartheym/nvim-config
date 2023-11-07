@@ -39,6 +39,7 @@ return {
         "zig",
         "php",
         "twig",
+        "glimmer",
       })
     end,
   },
