@@ -34,4 +34,7 @@ return {
       require("nvterm").setup()
     end,
   },
+  {
+    "mg979/vim-visual-multi",
+  },
 }
