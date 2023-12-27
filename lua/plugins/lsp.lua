@@ -1,3 +1,17 @@
+local function intelephense_get_storage_path()
+  return os.getenv("HOME") .. "/.config/intelephense"
+end
+
+local function intelephense_get_license_key()
+  local f = io.open(intelephense_get_storage_path() .. "/license.txt", "rb")
+  local content = ""
+  if f ~= nil then
+    content = f:read("*all")
+    f:close()
+  end
+  return string.gsub(content, "%s+", "")
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -8,6 +22,12 @@ return {
     end,
     opts = {
       servers = {
+        intelephense = {
+          init_options = {
+            globalStoragePath = intelephense_get_storage_path(),
+            licenceKey = intelephense_get_license_key(),
+          },
+        },
         tsserver = {
           init_options = {
             preferences = {
@@ -68,8 +88,8 @@ return {
         "zls",
 
         -- php
-        "phpactor",
         "intelephense",
+        "pretty-php",
         "twigcs",
         "djlint",
       })
@@ -79,6 +99,7 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
+        php = { "pretty-php" },
         twig = { "djlint" },
         xml = { "xmlformat" },
       },
