@@ -14,6 +14,7 @@ del("t", "<C-l>")
 -- General
 --
 map("n", "<C-y>", "<Cmd>%y+<Cr>", { desc = "Copy current buffer to system clipboard" })
+map("x", "<leader>p", '"_dP', { desc = "Paste without yank" })
 
 --
 -- Buffers
