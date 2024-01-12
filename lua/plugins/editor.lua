@@ -1,4 +1,6 @@
+local Util = require("lazyvim.util")
 local MiniBufremove = require("mini.bufremove")
+
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -36,5 +38,12 @@ return {
   },
   {
     "mg979/vim-visual-multi",
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    keys = {
+      { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
+      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+    },
   },
 }
