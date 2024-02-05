@@ -50,4 +50,22 @@ return {
       { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
     },
   },
+
+  {
+    "epwalsh/obsidian.nvim",
+    version = "*",
+    lazy = true,
+    ft = "markdown",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/notes/personal",
+        },
+      },
+    },
+  }
 }
