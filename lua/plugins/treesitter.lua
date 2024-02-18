@@ -40,6 +40,7 @@ return {
         "php",
         "twig",
         "glimmer",
+        "kdl",
       })
     end,
   },
