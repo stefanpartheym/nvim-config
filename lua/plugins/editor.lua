@@ -35,12 +35,6 @@ return {
     },
   },
   {
-    "NvChad/nvterm",
-    config = function()
-      require("nvterm").setup()
-    end,
-  },
-  {
     "mg979/vim-visual-multi",
   },
   {
@@ -50,7 +44,6 @@ return {
       { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
     },
   },
-
   {
     "epwalsh/obsidian.nvim",
     version = "*",
@@ -67,5 +60,5 @@ return {
         },
       },
     },
-  }
+  },
 }

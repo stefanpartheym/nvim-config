@@ -41,17 +41,3 @@ map("i", "<C-e>", "<End>", { desc = "Move cursor to end of line" })
 
 -- Terminal
 map("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Enter Normal Mode" })
-
-local terminal = require("nvterm.terminal")
-vim.keymap.set("n", "<leader>v", function()
-  terminal.toggle("vertical")
-end, { desc = "Toggle vertical terminal" })
-vim.keymap.set("n", "<leader>V", function()
-  terminal.new("vertical")
-end, { desc = "Toggle new vertical terminal" })
-vim.keymap.set("n", "<leader>h", function()
-  terminal.toggle("horizontal")
-end, { desc = "Toggle horizontal terminal" })
-vim.keymap.set("n", "<leader>H", function()
-  terminal.new("horizontal")
-end, { desc = "Toggle new horizontal terminal" })
