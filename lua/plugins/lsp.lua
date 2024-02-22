@@ -53,6 +53,9 @@ return {
             "handlebars",
           },
         },
+        zls = {
+          cmd = { vim.fn.expand("$HOME/.zvm/bin/zls") },
+        },
       },
     },
   },
