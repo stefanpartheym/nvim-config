@@ -5,8 +5,16 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     keys = {
-      { "<leader>e", "<leader>fE", desc = "Explorer NeoTree (cwd)", remap = true },
-      { "<leader>E", "<leader>fe", desc = "Explorer NeoTree (root dir)", remap = true },
+      { "<leader>fe", false, mode = { "i", "n", "s" } },
+      { "<leader>fE", false, mode = { "i", "n", "s" } },
+      { "<leader>E", false, mode = { "i", "n", "s" } },
+      {
+        "<leader>e",
+        function()
+          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+        end,
+        desc = "Open file tree",
+      },
     },
     opts = {
       filesystem = {
@@ -40,8 +48,12 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      { "<leader>fF", Util.telescope("files"), desc = "Find Files (root dir)" },
-      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+      { "<leader>fF", false, mode = { "i", "n", "s" } },
+      { "<leader>fR", false, mode = { "i", "n", "s" } },
+      { "<leader>sG", false, mode = { "i", "n", "s" } },
+      { "<leader>ff", Util.telescope("files", { cwd = false }), desc = "Find files" },
+      { "<leader>fr", Util.telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Recent" },
+      { "<leader>sg", Util.telescope("live_grep", { cwd = false }), desc = "Grep" },
     },
   },
   {
