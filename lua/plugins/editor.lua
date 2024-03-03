@@ -61,4 +61,13 @@ return {
       },
     },
   },
+  {
+    "folke/todo-comments.nvim",
+    keys = {
+      { "<leader>xt", false, mode = { "i", "n", "s" } },
+      { "<leader>xT", false, mode = { "i", "n", "s" } },
+      { "<leader>st", false, mode = { "i", "n", "s" } },
+      { "<leader>sT", false, mode = { "i", "n", "s" } },
+    },
+  },
 }
