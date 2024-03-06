@@ -21,8 +21,6 @@ map("x", "<leader>p", '"_dP', { desc = "Paste without yank" })
 --
 -- Buffers
 --
-map("n", "<S-Tab>", "<S-h>", { remap = true, desc = "Previous buffer" })
-map("n", "<Tab>", "<S-l>", { remap = true, desc = "Next buffer" })
 map("n", "<leader>x", "<leader>bd", { remap = true, desc = "Close current buffer" })
 
 --
