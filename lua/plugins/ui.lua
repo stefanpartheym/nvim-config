@@ -49,4 +49,16 @@ return {
       })
     end,
   },
+  {
+    "nvim-lualine/lualine.nvim",
+    config = function(_, opts)
+      local extended_opts = vim.tbl_deep_extend("force", opts, {
+        options = {
+          section_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" },
+        },
+      })
+      require("lualine").setup(extended_opts)
+    end,
+  },
 }
