@@ -78,8 +78,8 @@ return {
     keys = {
       { "<leader>xt", false, mode = { "i", "n", "s" } },
       { "<leader>xT", false, mode = { "i", "n", "s" } },
-      { "<leader>st", false, mode = { "i", "n", "s" } },
-      { "<leader>sT", false, mode = { "i", "n", "s" } },
+      { "<leader>lt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>lT", "<cmd>TodoTrouble keywords=TODO,FIX,FIXME<cr>", desc = "Todo/Fix/Fixme (Trouble)" },
     },
   },
   {
