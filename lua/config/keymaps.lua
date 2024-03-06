@@ -3,12 +3,14 @@ local del = vim.api.nvim_del_keymap
 
 -- Unset unwanted keymaps
 del("n", "<C-/>")
-del("n", "<leader>xl")
-del("n", "<leader>xq")
+del("n", "<C-_>")
 del("t", "<C-h>")
 del("t", "<C-j>")
 del("t", "<C-k>")
 del("t", "<C-l>")
+del("n", "<leader>l")
+del("n", "<leader>xl")
+del("n", "<leader>xq")
 
 --
 -- General
@@ -41,3 +43,7 @@ map("i", "<C-e>", "<End>", { desc = "Move cursor to end of line" })
 
 -- Terminal
 map("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Enter Normal Mode" })
+
+-- Misc
+map("n", "<leader>ll", "<cmd>lopen<cr>", { desc = "Location List" })
+map("n", "<leader>lq", "<cmd>copen<cr>", { desc = "Quickfix List" })

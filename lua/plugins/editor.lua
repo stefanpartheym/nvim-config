@@ -82,4 +82,17 @@ return {
       { "<leader>sT", false, mode = { "i", "n", "s" } },
     },
   },
+  {
+    "folke/trouble.nvim",
+    keys = {
+      { "<leader>xx", false, mode = { "i", "n", "s" } },
+      { "<leader>xX", false, mode = { "i", "n", "s" } },
+      { "<leader>xL", false, mode = { "i", "n", "s" } },
+      { "<leader>xQ", false, mode = { "i", "n", "s" } },
+      { "<leader>lx", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+      { "<leader>lX", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+      { "<leader>lL", "<cmd>TroubleToggle loclist<cr>", desc = "Location List (Trouble)" },
+      { "<leader>lQ", "<cmd>TroubleToggle quickfix<cr>", desc = "Quickfix List (Trouble)" },
+    },
+  },
 }
