@@ -9,6 +9,7 @@ del("t", "<C-j>")
 del("t", "<C-k>")
 del("t", "<C-l>")
 del("n", "<leader>l")
+del("n", "<leader>L")
 del("n", "<leader>xl")
 del("n", "<leader>xq")
 
@@ -21,7 +22,7 @@ map("x", "<leader>p", '"_dP', { desc = "Paste without yank" })
 --
 -- Buffers
 --
-map("n", "<leader>x", "<leader>bd", { remap = true, desc = "Close current buffer" })
+map("n", "<leader>x", LazyVim.ui.bufremove, { desc = "Close current buffer" })
 
 --
 -- Coding
@@ -43,5 +44,6 @@ map("i", "<C-e>", "<End>", { desc = "Move cursor to end of line" })
 map("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Enter Normal Mode" })
 
 -- Misc
-map("n", "<leader>ll", "<cmd>lopen<cr>", { desc = "Location List" })
-map("n", "<leader>lq", "<cmd>copen<cr>", { desc = "Quickfix List" })
+map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>lL", "<cmd>lopen<cr>", { desc = "Location List" })
+map("n", "<leader>lQ", "<cmd>copen<cr>", { desc = "Quickfix List" })
