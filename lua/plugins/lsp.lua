@@ -21,6 +21,9 @@ return {
       keys[#keys + 1] = { "<C-k>", false, mode = "i" }
     end,
     opts = {
+      inlay_hints = {
+        enabled = false,
+      },
       servers = {
         intelephense = {
           init_options = {
