@@ -18,11 +18,6 @@ map("n", "<C-y>", "<Cmd>%y+<Cr>", { desc = "Copy current buffer to system clipbo
 map("x", "<leader>p", '"_dP', { desc = "Paste without yank" })
 
 --
--- Buffers
---
-map("n", "<leader>x", LazyVim.ui.bufremove, { desc = "Close current buffer" })
-
---
 -- Coding
 --
 -- Cursor navigation (insert mode)
@@ -37,6 +32,5 @@ map("i", "<C-e>", "<End>", { desc = "Move cursor to end of line" })
 map("t", "<C-x>", vim.api.nvim_replace_termcodes("<C-\\><C-N>", true, true, true), { desc = "Enter Normal Mode" })
 
 -- Misc
-map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Lazy" })
-map("n", "<leader>lL", "<cmd>lopen<cr>", { desc = "Location List" })
-map("n", "<leader>lQ", "<cmd>copen<cr>", { desc = "Quickfix List" })
+map("n", "<leader>Ll", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>Le", "<cmd>LazyExtras<cr>", { desc = "LazyExtras" })
