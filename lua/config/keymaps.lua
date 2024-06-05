@@ -2,8 +2,6 @@ local map = vim.keymap.set
 local del = vim.api.nvim_del_keymap
 
 -- Unset unwanted keymaps
-del("n", "<C-/>")
-del("n", "<C-_>")
 del("t", "<C-h>")
 del("t", "<C-j>")
 del("t", "<C-k>")
@@ -27,11 +25,6 @@ map("n", "<leader>x", LazyVim.ui.bufremove, { desc = "Close current buffer" })
 --
 -- Coding
 --
--- Toggle line comment
-map("n", "<C-_>", "gcc", { remap = true, desc = "Toggle line comment" })
--- Toggle comment (visual mode)
-map("v", "<C-_>", "gc", { remap = true, desc = "Comment selection" })
-
 -- Cursor navigation (insert mode)
 map("i", "<C-h>", "<Left>", { desc = "Move cursor left" })
 map("i", "<C-l>", "<Right>", { desc = "Move cursor right" })
