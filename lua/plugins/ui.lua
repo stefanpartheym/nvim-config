@@ -57,6 +57,16 @@ return {
           section_separators = { left = "", right = "" },
           component_separators = { left = "", right = "" },
         },
+        sections = {
+          lualine_x = table.insert(opts.sections.lualine_x, {
+            "fileformat",
+            symbols = {
+              unix = " unix",
+              dos = " dos",
+              mac = " mac",
+            },
+          }),
+        },
       })
       require("lualine").setup(extended_opts)
     end,
