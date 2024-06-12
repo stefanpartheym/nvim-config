@@ -6,6 +6,9 @@ del("t", "<C-h>")
 del("t", "<C-j>")
 del("t", "<C-k>")
 del("t", "<C-l>")
+del("n", "<leader>ft") -- Terminal (Root Dir)
+del("n", "<leader>fT") -- Terminal (cwd)
+del("n", "<leader>fn") -- New File
 del("n", "<leader>l")
 del("n", "<leader>L")
 del("n", "<leader>xl")
@@ -15,6 +18,7 @@ del("n", "<leader>xq")
 -- General
 --
 map("n", "<C-y>", "<Cmd>%y+<Cr>", { desc = "Copy current buffer to system clipboard" })
+map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New File" })
 map("x", "<leader>p", '"_dP', { desc = "Paste without yank" })
 
 --
