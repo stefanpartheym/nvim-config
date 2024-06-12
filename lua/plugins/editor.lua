@@ -6,10 +6,6 @@ return {
     enabled = false,
   },
   {
-    "ahmedkhalf/project.nvim",
-    enabled = false,
-  },
-  {
     "nvim-neo-tree/neo-tree.nvim",
     keys = {
       { "<leader>fe", false },
