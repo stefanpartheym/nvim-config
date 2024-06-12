@@ -19,7 +19,7 @@ return {
       {
         "<leader>f",
         function()
-          require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+          require("neo-tree.command").execute({ toggle = true, dir = vim.fn.getcwd() })
         end,
         desc = "Open file tree",
       },
