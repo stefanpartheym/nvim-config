@@ -21,11 +21,23 @@ return {
       },
     },
   },
+
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
+      -- local trouble = require("trouble")
+      -- local symbols = trouble.statusline({
+      --   mode = "lsp_document_symbols",
+      --   groups = {},
+      --   title = false,
+      --   filter = { range = true },
+      --   format = "{kind_icon}{symbol.name:Normal}",
+      --   -- The following line is needed to fix the background color
+      --   -- Set it to the lualine section you want to use
+      --   hl_group = "lualine_c_normal",
+      -- })
       require("lualine").setup({
         options = {
           theme = "auto",
@@ -40,6 +52,10 @@ return {
             "diagnostics",
             { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
             "filename",
+            -- {
+            --   symbols.get,
+            --   cond = symbols.has,
+            -- },
           },
           lualine_x = {
             "encoding",
@@ -66,6 +82,7 @@ return {
       })
     end,
   },
+
   {
     "nvim-neo-tree/neo-tree.nvim",
     version = "*",
