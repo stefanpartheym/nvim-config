@@ -4,6 +4,20 @@ return {
     opts = {
       options = {
         always_show_bufferline = true,
+        diagnostics = "nvim_lsp",
+        diagnostics_indicator = function(_, _, diag)
+          local ret = (diag.error and " " .. diag.error .. " " or "")
+            .. (diag.warning and " " .. diag.warning or "")
+          return vim.trim(ret)
+        end,
+        offsets = {
+          {
+            filetype = "neo-tree",
+            text = "Neo-tree",
+            highlight = "Directory",
+            text_align = "left",
+          },
+        },
       },
     },
   },
