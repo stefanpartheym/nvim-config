@@ -123,6 +123,8 @@ return {
         window = {
           mappings = {
             ["<Bs>"] = "close_node",
+            ["h"] = "close_node",
+            ["l"] = "toggle_node",
             ["<Space>"] = "",
           },
         },
