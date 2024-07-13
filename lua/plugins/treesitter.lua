@@ -4,9 +4,45 @@ return {
     build = ":TSUpdate",
     opts = {
       -- Do not preinstall any parsers.
-      ensure_installed = {},
+      ensure_installed = {
+        -- Basics
+        "query",
+        "regex",
+        "vim",
+        "vimdoc",
+        "lua",
+        "luadoc",
+        "luap",
+        "bash",
+        "markdown",
+        "markdown_inline",
+
+        -- Programming languages
+        "c",
+        "zig",
+
+        -- Webdev
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
+        "vue",
+        "php",
+        "twig",
+
+        -- other
+        "xml",
+        "json",
+        "jsonc",
+        "json5",
+        "yaml",
+        "toml",
+        "kdl",
+        "dockerfile",
+      },
       -- Automatically install missing parsers when entering buffer.
-      auto_install = true,
+      auto_install = false,
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = true },
