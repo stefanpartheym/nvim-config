@@ -59,10 +59,15 @@ vim.opt.scrolloff = 4
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 
-vim.opt.colorcolumn = "80"
+-- Disable fillchars for empty lines.
+vim.opt.fillchars = { eob = " " }
+
+-- Configure indentation and force spaces instead of tabs.
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
+
+vim.opt.colorcolumn = "80"
 vim.opt.conceallevel = 2
 
 -- vim: ts=2 sts=2 sw=2 et
