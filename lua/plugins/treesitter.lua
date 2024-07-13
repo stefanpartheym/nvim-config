@@ -14,35 +14,30 @@ return {
         "luadoc",
         "luap",
         "bash",
+        "c",
         "markdown",
         "markdown_inline",
-
-        -- Programming languages
-        "c",
-        "zig",
 
         -- Webdev
         "html",
         "css",
         "javascript",
         "typescript",
-        "tsx",
-        "vue",
-        "php",
-        "twig",
 
         -- other
         "xml",
-        "json",
-        "jsonc",
-        "json5",
         "yaml",
+        "json",
         "toml",
-        "kdl",
-        "dockerfile",
       },
+      -- Force parser install directory to not conflict with OS level directory.
+      -- NOTE: This is to avoid the error:
+      --   Parser dir ' /usr/share/nvim/site/pack/dist/start/nvim-treesitter/parser '
+      --   should be read/write (see README on how to configure an alternative install location)
+      --   /usr/share/nvim/site/pack/dist/start/nvim-treesitter/parser '
+      parser_install_dir = require("lazy.core.config").defaults.root .. "/nvim-treesitter",
       -- Automatically install missing parsers when entering buffer.
-      auto_install = false,
+      auto_install = true,
       sync_install = false,
       highlight = { enable = true },
       indent = { enable = true },
