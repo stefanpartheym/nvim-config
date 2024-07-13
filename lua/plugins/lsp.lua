@@ -13,7 +13,8 @@ local function intelephense_get_license_key()
 end
 
 return {
-  { -- LSP Configuration & Plugins
+  -- LSP Configuration & Plugins
+  {
     "neovim/nvim-lspconfig",
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     dependencies = {
@@ -163,6 +164,13 @@ return {
           end
         end,
       })
+
+      -- Setup diagnostic signs.
+      local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+      for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+      end
 
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
