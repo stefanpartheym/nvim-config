@@ -151,14 +151,17 @@ return {
 
   {
     "mg979/vim-visual-multi",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
   },
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     opts = {
       indent = {
-        char = "┊",
-        tab_char = "┊",
+        -- alternatives: │, ┊
+        char = "│",
+        tab_char = "│",
       },
       scope = { show_start = false, show_end = false },
       exclude = {
