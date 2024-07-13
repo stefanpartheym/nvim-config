@@ -7,6 +7,7 @@
   "fidget.nvim": { "branch": "main", "commit": "bc34563a50c4d05e2d35a0db246e611d0ac95161" },
   "friendly-snippets": { "branch": "main", "commit": "45a1b96e46efe5fce8af325d4bed45feb9d29d0f" },
   "gitsigns.nvim": { "branch": "main", "commit": "e9c4187c3774a46df2d086a66cf3a7e6bea4c432" },
+  "indent-blankline.nvim": { "branch": "master", "commit": "65e20ab94a26d0e14acac5049b8641336819dfc7" },
   "lazy.nvim": { "branch": "main", "commit": "58c6bc4ab298dc0d808d325754585f918a031919" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "37a336b653f8594df75c827ed589f1c91d91ff6c" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "c5e07b8ff54187716334d585db34282e46fa2932" },
@@ -28,5 +29,6 @@
   "todo-comments.nvim": { "branch": "main", "commit": "c57b74b9bd5173b1c8c7c654cfe458dfa874108f" },
   "trouble.nvim": { "branch": "main", "commit": "afe11ccbfa2b0788f934c53719cc83a0d60d828c" },
   "ts-comments.nvim": { "branch": "main", "commit": "84f11e80f23ef7c7a2b8ef91dc23234c1fab38aa" },
+  "vim-visual-multi": { "branch": "master", "commit": "38b0e8d94a5499ccc17d6159763d32c79f53417b" },
   "which-key.nvim": { "branch": "main", "commit": "d3d36f168bb7f83714a09488a47624a83187beed" }
 }
