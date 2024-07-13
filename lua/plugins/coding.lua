@@ -24,10 +24,38 @@ return {
     opts = {},
   },
 
-  -- Comments
+  -- Surround
+  {
+    "echasnovski/mini.surround",
+    config = function()
+      local mappings = {
+        add = "gsa", -- Add surrounding in Normal and Visual modes
+        delete = "gsd", -- Delete surrounding
+        replace = "gsr", -- Replace surrounding
+      }
+      local keys = {
+        { mappings.add, desc = "Add Surrounding", mode = { "n", "v" } },
+        { mappings.delete, desc = "Delete surrounding" },
+        { mappings.replace, desc = "Replace surrounding" },
+      }
+      require("mini.surround").setup({
+        mappings = mappings,
+        keys = keys,
+      })
+    end,
+  },
+
+  -- Enhanced comments
   {
     "folke/ts-comments.nvim",
     event = "VeryLazy",
+    opts = {},
+  },
+
+  -- Automatically add closing tags for HTML and JSX
+  {
+    "windwp/nvim-ts-autotag",
+    event = "BufEnter",
     opts = {},
   },
 }
