@@ -7,7 +7,6 @@ return {
     },
     opts = {
       spec = {
-        mode = { "n", "v" },
         { "[", group = "prev" },
         { "]", group = "next" },
         { "g", group = "goto" },
