@@ -88,7 +88,7 @@ return {
           --  To jump back, press <C-t>.
           map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
-          -- WARN: This is not Goto Definition, this is Goto Declaration.
+          -- NOTE: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
           map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
@@ -98,11 +98,6 @@ return {
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
           map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-
-          -- Jump to the type of the word under your cursor.
-          --  Useful when you're not sure what type a variable is and you want to see
-          --  the definition of its *type*, not where it was *defined*.
-          map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
@@ -119,6 +114,9 @@ return {
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
           map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+
+          -- Show LspInfo
+          map("<leader>cl", "<Cmd>LspInfo<Cr>", "Show LspInfo")
 
           -- Opens a popup that displays documentation about the word under your cursor
           --  See `:help K` for why this keymap.
@@ -225,28 +223,7 @@ return {
             },
           },
         },
-
-        emmet_ls = {
-          filetypes = {
-            "css",
-            "eruby",
-            "html",
-            "javascriptreact",
-            "less",
-            "sass",
-            "scss",
-            "svelte",
-            "pug",
-            "typescriptreact",
-            "vue",
-            "twig",
-            "handlebars",
-          },
-        },
       }
-
-      -- -- Add custom LSP servers.
-      -- vim.list_extend(servers, lsp_servers)
 
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
@@ -264,15 +241,6 @@ return {
         "lua-language-server",
         "stylua",
 
-        -- webdev
-        "css-lsp",
-        "html-lsp",
-        "emmet-ls",
-        "typescript-language-server",
-        "vue-language-server",
-        "deno",
-        "xmlformatter",
-
         -- shell
         "bash-language-server",
         "shfmt",
@@ -281,11 +249,20 @@ return {
         "clangd",
         "clang-format",
 
-        -- json
-        "fixjson",
-
         -- zig
         "zls",
+
+        -- json
+        "json-lsp",
+        "fixjson",
+
+        -- webdev
+        "css-lsp",
+        "html-lsp",
+        "emmet-ls",
+        "typescript-language-server",
+        "vue-language-server",
+        "xmlformatter",
 
         -- php
         "intelephense",
@@ -310,7 +287,8 @@ return {
     end,
   },
 
-  { -- Autoformat
+  -- Autoformat
+  {
     "stevearc/conform.nvim",
     lazy = false,
     keys = {
