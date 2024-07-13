@@ -2,33 +2,31 @@ return {
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
+    dependencies = {
+      { "echasnovski/mini.icons" },
+    },
     opts = {
-      plugins = { spelling = true },
-      defaults = {
+      spec = {
         mode = { "n", "v" },
-        ["g"] = { name = "+goto" },
-        -- ["gs"] = { name = "+surround" },
-        ["z"] = { name = "+fold" },
-        ["]"] = { name = "+next" },
-        ["["] = { name = "+prev" },
-        ["<leader>b"] = { name = "+buffer" },
-        ["<leader>c"] = { name = "+code" },
-        -- ["<leader>g"] = { name = "+git" },
-        -- ["<leader>gh"] = { name = "+hunks", ["_"] = "which_key_ignore" },
-        ["<leader>q"] = { name = "+quit/session" },
-        ["<leader>s"] = { name = "+search" },
-      --   ["<leader>u"] = { name = "+ui" },
-      --   ["<leader>w"] = { name = "+windows" },
-      --   ["<leader>x"] = { name = "+diagnostics/quickfix" },
+        { "[", group = "prev" },
+        { "]", group = "next" },
+        { "g", group = "goto" },
+        { "gs", group = "surround" },
+        { "z", group = "fold" },
+        { "<leader>b", group = "buffer" },
+        { "<leader>c", group = "code" },
+        { "<leader>g", group = "git" },
+        { "<leader>gh", group = "hunks" },
+        { "<leader>gh_", hidden = true },
+        { "<leader>q", group = "session" },
+        { "<leader>s", group = "search" },
+        { "<leader>ss", group = "LSP symbols" },
+        { "<leader>x", group = "diagnostics/quickfix" },
       },
     },
-    config = function(_, opts)
-      local wk = require("which-key")
-      wk.setup(opts)
-      wk.register(opts.defaults)
-    end,
   },
 
+  -- Fuzzy finder
   {
     "nvim-telescope/telescope.nvim",
     event = "VimEnter",
@@ -44,7 +42,7 @@ return {
         -- `cond` is a condition used to determine whether this plugin should be
         -- installed and loaded.
         cond = function()
-          return vim.fn.executable "make" == 1
+          return vim.fn.executable("make") == 1
         end,
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
@@ -52,7 +50,7 @@ return {
       -- Useful for getting pretty icons, but requires special font.
       --  If you already have a Nerd Font, or terminal set up with fallback fonts
       --  you can enable this
-      { "nvim-tree/nvim-web-devicons" }
+      { "nvim-tree/nvim-web-devicons" },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -76,7 +74,7 @@ return {
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
-      require("telescope").setup {
+      require("telescope").setup({
         -- You can put your default mappings / updates / etc. in here
         --  All the info you"re looking for is in `:help telescope.setup()`
         --
@@ -95,14 +93,14 @@ return {
           prompt_prefix = " ",
           selection_caret = " ",
         },
-      }
+      })
 
       -- Enable telescope extensions, if they are installed
       pcall(require("telescope").load_extension, "fzf")
       pcall(require("telescope").load_extension, "ui-select")
 
       -- See `:help telescope.builtin`
-      local builtin = require "telescope.builtin"
+      local builtin = require("telescope.builtin")
 
       vim.keymap.set(
         "n",
