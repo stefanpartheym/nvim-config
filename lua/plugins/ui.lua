@@ -34,9 +34,24 @@ return {
         },
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = { "filename" },
-          lualine_x = { "encoding", "fileformat", "filetype" },
+          lualine_b = { "branch" },
+          lualine_c = {
+            "diagnostics",
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+            "filename",
+          },
+          lualine_x = {
+            "encoding",
+            "fileformat",
+            {
+              "diff",
+              symbols = {
+                added = " ",
+                modified = " ",
+                removed = " ",
+              },
+            },
+          },
           lualine_y = {
             { "progress", separator = " ", padding = { left = 1, right = 0 } },
             { "location", padding = { left = 0, right = 1 } },
