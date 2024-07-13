@@ -58,6 +58,14 @@ return {
             -- },
           },
           lualine_x = {
+            function()
+              local reg = vim.fn.reg_recording()
+              if reg == "" then
+                return "" -- not recording
+              else
+                return "rec macro @" .. reg
+              end
+            end,
             "encoding",
             "fileformat",
             {
