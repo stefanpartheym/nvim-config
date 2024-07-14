@@ -6,21 +6,33 @@ return {
       { "echasnovski/mini.icons" },
     },
     opts = {
+      win = {
+        -- NOTE: Workaround to avoid which-key disappearing when cursor is at
+        -- the bottom of the buffer.
+        border = "single",
+      },
+      modes = {
+        s = false, -- Select mode: Disable to avoid trigger during completion.
+        x = false, -- Visual mode: Disable to avoid trigger on <S-v> and <v>.
+      },
       spec = {
-        { "[", group = "prev" },
-        { "]", group = "next" },
-        { "g", group = "goto" },
-        { "gs", group = "surround" },
-        { "z", group = "fold" },
-        { "<leader>b", group = "buffer" },
-        { "<leader>c", group = "code" },
-        { "<leader>g", group = "git" },
-        { "<leader>gh", group = "hunks" },
-        { "<leader>gh_", hidden = true },
-        { "<leader>q", group = "session" },
-        { "<leader>s", group = "search" },
-        { "<leader>ss", group = "LSP symbols" },
-        { "<leader>x", group = "diagnostics/quickfix" },
+        {
+          mode = { "n", "v" },
+          { "[", group = "prev" },
+          { "]", group = "next" },
+          { "g", group = "goto" },
+          { "gs", group = "surround" },
+          { "z", group = "fold" },
+          { "<leader>b", group = "buffer" },
+          { "<leader>c", group = "code" },
+          { "<leader>g", group = "git" },
+          { "<leader>gh", group = "hunks" },
+          { "<leader>gh_", hidden = true },
+          { "<leader>q", group = "session" },
+          { "<leader>s", group = "search" },
+          { "<leader>ss", group = "LSP symbols" },
+          { "<leader>x", group = "diagnostics/quickfix" },
+        },
       },
     },
   },
