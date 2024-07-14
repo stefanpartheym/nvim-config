@@ -63,20 +63,6 @@ return {
           end
 
         -- stylua: ignore start
-        map("n", "]h", function()
-          if vim.wo.diff then
-            vim.cmd.normal({ "]c", bang = true })
-          else
-            gs.nav_hunk("next")
-          end
-        end, "Next hunk")
-        map("n", "[h", function()
-          if vim.wo.diff then
-            vim.cmd.normal({ "[c", bang = true })
-          else
-            gs.nav_hunk("prev")
-          end
-        end, "Prev hunk")
         map("n", "]H", function() gs.nav_hunk("last") end, "Last hunk")
         map("n", "[H", function() gs.nav_hunk("first") end, "First hunk")
         map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage hunk")
@@ -86,10 +72,9 @@ return {
         map("n", "<leader>ghR", gs.reset_buffer, "Reset buffer")
         map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview hunk inline")
         map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame line")
-        map("n", "<leader>ghB", function() gs.blame() end, "Blame buffer")
+        map("n", "<leader>ghB", gs.blame, "Blame buffer")
         map("n", "<leader>ghd", gs.diffthis, "Diff this")
         map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff this ~")
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns select hunk")
         end,
       }
     end,

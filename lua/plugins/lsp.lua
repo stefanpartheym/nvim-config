@@ -120,9 +120,8 @@ return {
           -- Show LspInfo
           map("<leader>cl", "<Cmd>LspInfo<Cr>", "Show LspInfo")
 
-          -- Opens a popup that displays documentation about the word under your cursor
-          --  See `:help K` for why this keymap.
-          map("K", vim.lsp.buf.hover, "Hover Documentation")
+          -- Show diagnostics in current line
+          map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
 
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
