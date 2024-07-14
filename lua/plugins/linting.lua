@@ -91,7 +91,7 @@ return {
       end
 
       vim.api.nvim_create_autocmd(opts.events, {
-        group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
+        group = vim.api.nvim_create_augroup("lint", { clear = true }),
         callback = M.debounce(100, M.lint),
       })
     end,
