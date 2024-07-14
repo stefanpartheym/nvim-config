@@ -95,6 +95,13 @@ return {
     end,
   },
 
+  -- Display marks in gutter.
+  {
+    "chentoast/marks.nvim",
+    event = "VeryLazy",
+    opts = {},
+  },
+
   -- Better diagnostics list and others
   {
     "folke/trouble.nvim",
