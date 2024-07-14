@@ -51,7 +51,7 @@ return {
           theme = "auto",
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
-          disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter", "neo-tree" } },
+          disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
         },
         sections = {
           lualine_a = { "mode" },
@@ -95,6 +95,7 @@ return {
             end,
           },
         },
+        extensions = { "neo-tree", "lazy" },
       })
     end,
   },
