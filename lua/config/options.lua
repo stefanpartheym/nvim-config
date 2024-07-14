@@ -73,4 +73,16 @@ vim.opt.conceallevel = 2
 -- Configure session options (make sure windows like neo-tree is not saved)
 vim.opt.sessionoptions = "buffers,curdir,folds,help,winsize"
 
+-- Setup diagnostic signs.
+vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.HINT] = " ",
+      [vim.diagnostic.severity.INFO] = " ",
+    },
+  },
+})
+
 -- vim: ts=2 sts=2 sw=2 et
