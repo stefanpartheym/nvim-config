@@ -75,7 +75,7 @@ return {
     keys = function()
       local builtin = require("telescope.builtin")
       return {
-        { "<leader>,", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffer" },
+        { "<leader>,", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch buffer" },
         { "<leader>sh", builtin.help_tags, desc = "Search help" },
         { "<leader>sk", builtin.keymaps, desc = "Search keymaps" },
         { "<leader>sm", builtin.marks, desc = "Search marks" },

@@ -9,7 +9,7 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 map("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
-map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 
 --
 -- Windows

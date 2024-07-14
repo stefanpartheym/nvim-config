@@ -42,7 +42,7 @@ return {
         suffix_next = "", -- Suffix to search with "next" method
       }
       local keys = {
-        { mappings.add, desc = "Add Surrounding", mode = { "n", "v" } },
+        { mappings.add, desc = "Add surrounding", mode = { "n", "v" } },
         { mappings.delete, desc = "Delete surrounding" },
         { mappings.replace, desc = "Replace surrounding" },
       }

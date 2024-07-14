@@ -88,18 +88,18 @@ return {
           -- Jump to the definition of the word under your cursor.
           --  This is where a variable was first declared, or where a function is defined, etc.
           --  To jump back, press <C-t>.
-          map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+          map("gd", require("telescope.builtin").lsp_definitions, "Goto definition")
 
           -- NOTE: This is not Goto Definition, this is Goto Declaration.
           --  For example, in C this would take you to the header.
-          map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+          map("gD", vim.lsp.buf.declaration, "Goto declaration")
 
           -- Find references for the word under your cursor.
-          map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+          map("gr", require("telescope.builtin").lsp_references, "Goto references")
 
           -- Jump to the implementation of the word under your cursor.
           --  Useful when your language has ways of declaring types without an actual implementation.
-          map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+          map("gI", require("telescope.builtin").lsp_implementations, "Goto implementation")
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
@@ -115,7 +115,7 @@ return {
 
           -- Execute a code action, usually your cursor needs to be on top of an error
           -- or a suggestion from your LSP for this to activate.
-          map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+          map("<leader>ca", vim.lsp.buf.code_action, "Code action")
 
           -- Show LspInfo
           map("<leader>cl", "<Cmd>LspInfo<Cr>", "Show LspInfo")
@@ -160,7 +160,7 @@ return {
           if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
             map("<leader>th", function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({}))
-            end, "[T]oggle Inlay [H]ints")
+            end, "Toggle inlay hints")
           end
         end,
       })
