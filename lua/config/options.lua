@@ -70,4 +70,7 @@ vim.opt.expandtab = true
 vim.opt.colorcolumn = "80"
 vim.opt.conceallevel = 2
 
+-- Configure session options (make sure windows like neo-tree is not saved)
+vim.opt.sessionoptions = "buffers,curdir,folds,help,winsize"
+
 -- vim: ts=2 sts=2 sw=2 et
