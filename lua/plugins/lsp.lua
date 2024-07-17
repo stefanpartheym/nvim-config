@@ -238,35 +238,27 @@ return {
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        -- lua
+        -- Language servers
         "lua-language-server",
-        "stylua",
-
-        -- shell
         "bash-language-server",
-        "shfmt",
-
-        -- c/cpp
         "clangd",
-        "clang-format",
-
-        -- zig
         "zls",
-
-        -- json
         "json-lsp",
-        "fixjson",
-
-        -- webdev
+        "yaml-language-server",
+        "lemminx", -- XML
         "css-lsp",
         "html-lsp",
         "emmet-ls",
         "typescript-language-server",
         "vue-language-server",
-        "xmlformatter",
-
-        -- php
         "intelephense",
+
+        -- Formatters/linters/etc.
+        "stylua",
+        "shfmt",
+        "prettier",
+        "clang-format",
+        "xmlformatter",
         "pretty-php",
         "twigcs",
         "djlint",
@@ -316,7 +308,7 @@ return {
     end,
     opts = function()
       local format = require("util.format")
-      return {
+      local opts = {
         notify_on_error = false,
         format_on_save = function()
           if format.autoformat_enabled() then
@@ -327,6 +319,9 @@ return {
         end,
         formatters_by_ft = {
           lua = { "stylua" },
+          xml = { "xmlformat" },
+          php = { "pretty-php" },
+          twig = { "djlint" },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
@@ -335,6 +330,30 @@ return {
           -- javascript = { { "prettierd", "prettier" } },
         },
       }
+
+      local prettier_fts = {
+        "css",
+        "graphql",
+        "handlebars",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jsonc",
+        "json5",
+        "less",
+        "markdown",
+        "markdown.mdx",
+        "scss",
+        "typescript",
+        "typescriptreact",
+        "vue",
+        "yaml",
+      }
+      for _, ft in ipairs(prettier_fts) do
+        opts.formatters_by_ft[ft] = { "prettier" }
+      end
+      return opts
     end,
   },
 
