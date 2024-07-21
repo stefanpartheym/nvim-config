@@ -11,10 +11,6 @@ return {
         -- the bottom of the buffer.
         border = "single",
       },
-      modes = {
-        s = false, -- Select mode: Disable to avoid trigger during completion.
-        x = false, -- Visual mode: Disable to avoid trigger on <S-v> and <v>.
-      },
       spec = {
         {
           mode = { "n", "v" },
