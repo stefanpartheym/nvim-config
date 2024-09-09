@@ -179,6 +179,12 @@ return {
     },
     main = "ibl",
   },
+
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {},
+    dependencies = { "nvim-treesitter/nvim-treesitter", "echasnovski/mini.icons" },
+  },
 }
 
 -- vim: ts=2 sts=2 sw=2 et
