@@ -242,7 +242,10 @@ return {
         "lua-language-server",
         "bash-language-server",
         "clangd",
-        "zls",
+        -- NOTE:
+        -- Never install `zls` via Mason: It would not work with the local `zls`
+        -- managed by `ziege`.
+        -- "zls",
         "json-lsp",
         "yaml-language-server",
         "lemminx", -- XML
@@ -277,6 +280,10 @@ return {
           end,
         },
       })
+
+      -- NOTE:
+      -- Setup `zls` manually to always use current version from `ziege`.
+      require("lspconfig").zls.setup({})
     end,
   },
 
