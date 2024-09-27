@@ -1,3 +1,5 @@
+local ui = require("util.ui")
+
 local map = vim.keymap.set
 local unmap = vim.keymap.del
 
@@ -34,7 +36,7 @@ map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
-map("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete buffer" })
+map("n", "<leader>bd", ui.bufremove, { desc = "Delete buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete buffer and window" })
 
 --
