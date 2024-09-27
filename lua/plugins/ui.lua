@@ -121,6 +121,7 @@ return {
 
     opts = {
       filesystem = {
+        use_libuv_file_watcher = true,
         follow_current_file = {
           enabled = true,
           leave_dirs_open = false,
@@ -129,13 +130,13 @@ return {
           hide_dotfiles = false,
           hide_gitignored = false,
         },
-        window = {
-          mappings = {
-            ["<Bs>"] = "close_node",
-            ["h"] = "close_node",
-            ["l"] = "toggle_node",
-            ["<Space>"] = "",
-          },
+      },
+      window = {
+        mappings = {
+          ["<Bs>"] = "close_node",
+          ["h"] = "close_node",
+          ["l"] = "toggle_node",
+          ["<Space>"] = "",
         },
       },
     },
