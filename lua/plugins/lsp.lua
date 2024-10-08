@@ -342,6 +342,7 @@ return {
           zigfmt = {
             command = "zig",
             args = { "fmt", "--stdin" },
+            stdin = true,
           },
           ktfmt = {
             command = "ktfmt",
