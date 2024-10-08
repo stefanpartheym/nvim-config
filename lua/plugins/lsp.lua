@@ -319,7 +319,7 @@ return {
         notify_on_error = false,
         format_on_save = function()
           if format.autoformat_enabled() then
-            return { timeout_ms = 500 }
+            return { timeout_ms = 1000 }
           else
             return nil
           end
@@ -330,6 +330,7 @@ return {
           php = { "pretty-php" },
           twig = { "djlint" },
           zig = { "zigfmt" },
+          kotlin = { "ktfmt" },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
@@ -341,7 +342,10 @@ return {
           zigfmt = {
             command = "zig",
             args = { "fmt", "--stdin" },
-            stdin = true,
+          },
+          ktfmt = {
+            command = "ktfmt",
+            args = { "--kotlinlang-style", "-" },
           },
         },
       }
