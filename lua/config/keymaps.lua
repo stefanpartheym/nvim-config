@@ -48,10 +48,6 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- Cursor navigation (insert mode)
-map("i", "<C-h>", "<Left>", { desc = "Move cursor left" })
-map("i", "<C-l>", "<Right>", { desc = "Move cursor right" })
-map("i", "<C-j>", "<Down>", { desc = "Move cursor down" })
-map("i", "<C-k>", "<Up>", { desc = "Move cursor up" })
 map("i", "<C-b>", "<Esc>^i", { desc = "Move cursor to beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "Move cursor to end of line" })
 
