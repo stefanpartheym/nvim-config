@@ -123,6 +123,18 @@ return {
           -- Show diagnostics in current line
           map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
 
+          -- TODO:
+          -- Add futher LSP keymaps from:
+          -- [LazyVim](https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/lsp/keymaps.lua#L24)
+
+          -- Show signature help
+          vim.keymap.set(
+            "i",
+            "<C-k>",
+            vim.lsp.buf.signature_help,
+            { buffer = event.buf, desc = "LSP: Show signature help" }
+          )
+
           -- The following two autocommands are used to highlight references of the
           -- word under your cursor when your cursor rests there for a little while.
           --    See `:help CursorHold` for information about when this is executed
