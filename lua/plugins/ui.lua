@@ -35,64 +35,76 @@ return {
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      -- local trouble = require("trouble")
-      -- local symbols = trouble.statusline({
-      --   mode = "lsp_document_symbols",
-      --   groups = {},
-      --   title = false,
-      --   filter = { range = true },
-      --   format = "{kind_icon}{symbol.name:Normal}",
-      --   -- The following line is needed to fix the background color
-      --   -- Set it to the lualine section you want to use
-      --   hl_group = "lualine_c_normal",
-      -- })
       require("lualine").setup({
         options = {
           theme = "auto",
-          component_separators = { left = "", right = "" },
+          -- component_separators = "│",
+          component_separators = "",
           section_separators = { left = "", right = "" },
           disabled_filetypes = { statusline = { "dashboard", "alpha", "ministarter" } },
         },
         sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch" },
-          lualine_c = {
-            "diagnostics",
-            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
-            "filename",
-            -- {
-            --   symbols.get,
-            --   cond = symbols.has,
-            -- },
+          lualine_a = {
+            {
+              "filetype",
+              colored = false,
+              icon_only = true,
+              separator = "",
+              padding = { left = 1, right = 0 },
+            },
+            {
+              "filename",
+              padding = { left = 0, right = 1 },
+              symbols = {
+                modified = "●",
+                readonly = "",
+                unnamed = "[unnamed]",
+                newfile = "[new]",
+              },
+            },
           },
+          lualine_b = {
+            {
+              "fileformat",
+              padding = 2,
+            },
+          },
+          lualine_c = { "encoding" },
           lualine_x = {
-            function()
-              local reg = vim.fn.reg_recording()
-              if reg == "" then
-                return "" -- not recording
-              else
-                return "rec macro @" .. reg
-              end
-            end,
-            "encoding",
-            "fileformat",
+            {
+              function()
+                local reg = vim.fn.reg_recording()
+                if reg == "" then
+                  return "" -- not recording
+                else
+                  return "rec macro @" .. reg
+                end
+              end,
+              padding = 2,
+            },
+            {
+              "diagnostics",
+              padding = 2,
+            },
             {
               "diff",
+              padding = 2,
               symbols = {
                 added = " ",
                 modified = " ",
                 removed = " ",
               },
             },
+            "location",
           },
           lualine_y = {
-            { "progress", separator = " ", padding = { left = 1, right = 0 } },
-            { "location", padding = { left = 0, right = 1 } },
+            "progress",
           },
           lualine_z = {
-            function()
-              return " " .. os.date("%R")
-            end,
+            "branch",
+            -- function()
+            --   return " " .. os.date("%R")
+            -- end,
           },
         },
         extensions = { "neo-tree", "lazy" },
