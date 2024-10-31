@@ -156,9 +156,9 @@ return {
     event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     opts = {
       indent = {
-        -- alternatives: │, ┊
-        char = "│",
-        tab_char = "│",
+        -- Alternative chars: ▏, │, ┊
+        -- See indent-blankline.nvim help for more info: `ibl.config.indent.char`
+        char = "▏",
       },
       scope = { show_start = false, show_end = false },
       exclude = {
