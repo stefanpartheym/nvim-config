@@ -295,7 +295,20 @@ return {
 
       -- NOTE:
       -- Setup `zls` manually to always use current version from `ziege`.
-      require("lspconfig").zls.setup({})
+      require("lspconfig").zls.setup({
+        capabilities = capabilities,
+      })
+      -- NOTE:
+      -- Setup `kotlin_language_server ` manually to use forked version from
+      -- https://github.com/kotlin-community-tools/kotlin-language-server.
+      -- This fork contains fixes, that prevent the language server from raising
+      -- annoying internal errors.
+      require("lspconfig").kotlin_language_server.setup({
+        cmd = {
+          os.getenv("HOME") .. "/.lsp/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
+        },
+        capabilities = capabilities,
+      })
     end,
   },
 
