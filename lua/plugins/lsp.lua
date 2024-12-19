@@ -36,11 +36,13 @@ return {
       "WhoIsSethDaniel/mason-tool-installer.nvim",
 
       -- Useful status updates for LSP.
-      { "j-hui/fidget.nvim", opts = {} },
+      "j-hui/fidget.nvim",
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { "folke/neodev.nvim", opts = {} },
+      "folke/neodev.nvim",
+
+      "b0o/schemastore.nvim",
     },
     config = function()
       --  This function gets run when an LSP attaches to a particular buffer.
@@ -210,6 +212,30 @@ return {
             preferences = {
               quotePreference = "single",
               importModuleSpecifierPreference = "project-relative",
+            },
+          },
+        },
+
+        jsonls = {
+          settings = {
+            json = {
+              schemas = require("schemastore").json.schemas(),
+              validate = { enable = true },
+            },
+          },
+        },
+
+        yamlls = {
+          settings = {
+            yaml = {
+              schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+              },
+              schemas = require("schemastore").yaml.schemas(),
             },
           },
         },
