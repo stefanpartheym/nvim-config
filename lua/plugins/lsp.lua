@@ -404,6 +404,7 @@ return {
             mode = "symbol_text",
             maxwidth = 50,
             ellipsis_char = "…",
+            symbol_map = { Codeium = "" },
           }),
         },
 
@@ -471,6 +472,7 @@ return {
           { name = "nvim_lsp" },
           { name = "luasnip" },
           { name = "path" },
+          { name = "codeium" },
         },
       })
     end,
