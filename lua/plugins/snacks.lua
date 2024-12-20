@@ -1,11 +1,16 @@
+--- @type LazyPluginSpec
 return {
   "folke/snacks.nvim",
+  dependencies = {
+    "MaximilianLloyd/ascii.nvim",
+  },
   priority = 1000,
   lazy = false,
-  ---@type snacks.Config
   opts = {
     bigfile = { enabled = true },
     quickfile = { enabled = true },
+    ---@class snacks.dashboard.Config
+    dashboard = { enabled = true },
     words = { enabled = true },
     notifier = { enabled = true },
     zen = {
@@ -21,6 +26,11 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    local logo = require("ascii.text.neovim").sharp
+    opts.dashboard.preset = { header = table.concat(logo, "\n") }
+    require("snacks").setup(opts)
+  end,
   -- stylua: ignore
   keys = {
     { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
