@@ -3,18 +3,23 @@ return {
   "folke/snacks.nvim",
   dependencies = {
     "MaximilianLloyd/ascii.nvim",
+    "navarasu/onedark.nvim",
   },
   priority = 1000,
   lazy = false,
+  --- @type snacks.Config
   opts = {
     bigfile = { enabled = true },
     quickfile = { enabled = true },
-    ---@class snacks.dashboard.Config
     dashboard = { enabled = true },
     words = { enabled = true },
     notifier = { enabled = true },
+    input = { enabled = true },
+    indent = {
+      indent = { char = "▏", hl = "SnacksIndent" },
+      scope = { char = "▏", hl = "SnacksIndentScope" },
+    },
     zen = {
-      enabled = true,
       win = {
         backdrop = { transparent = false },
       },
@@ -54,6 +59,7 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()
+        -- Setup toggles
         Snacks.toggle.option("spell", { name = "spell check" }):map(tk("s"))
         Snacks.toggle.option("wrap", { name = "word wrap" }):map(tk("w"))
         Snacks.toggle.option("relativenumber", { name = "relative line numbers" }):map(tk("r"))
@@ -63,6 +69,17 @@ return {
           .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
           :map(tk("c"))
         Snacks.toggle.zen():map(tk("z"))
+
+        -- Setup indent colors
+        local palette = require("onedark.palette")[vim.g.onedark_config.style]
+        Snacks.util.set_hl({
+          ["SnacksIndent"] = {
+            fg = palette.bg1,
+          },
+          ["SnacksIndentScope"] = {
+            fg = palette.grey,
+          },
+        })
       end,
     })
   end,
