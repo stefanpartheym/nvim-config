@@ -7,8 +7,13 @@ return {
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     words = { enabled = true },
-    -- Enabled features
     notifier = { enabled = true },
+    zen = {
+      enabled = true,
+      win = {
+        backdrop = { transparent = false },
+      },
+    },
     styles = {
       notification = {
         -- Wrap notifications
@@ -47,7 +52,7 @@ return {
         Snacks.toggle
           .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
           :map(tk("c"))
-        Snacks.toggle.inlay_hints():map(tk("h"))
+        Snacks.toggle.zen():map(tk("z"))
       end,
     })
   end,
