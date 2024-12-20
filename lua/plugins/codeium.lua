@@ -2,7 +2,6 @@ return {
   "Exafunction/codeium.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "hrsh7th/nvim-cmp",
     "folke/snacks.nvim",
   },
   config = function()
@@ -40,6 +39,8 @@ return {
       :map("<leader>tv")
 
     require("codeium").setup({
+      -- Do not show Codeium completion menu.
+      enable_cmp_source = false,
       virtual_text = {
         enabled = true,
         -- Set to true if you never want completions to be shown automatically.
@@ -68,13 +69,11 @@ return {
           -- Accept the next line.
           accept_line = false,
           -- Clear the virtual text.
-          clear = "C-q",
+          clear = "<C-q>",
           -- Cycle to the next completion.
-          next = "C-n",
-          -- next = "<M-]>",
+          next = "<C-M-n>",
           -- Cycle to the previous completion.
-          prev = "C-p",
-          -- prev = "<M-[>",
+          prev = "<C-M-p>",
         },
       },
     })
