@@ -4,11 +4,9 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    -- Disabled features
-    bigfile = { enabled = false },
-    quickfile = { enabled = false },
-    statuscolumn = { enabled = false },
-    words = { enabled = false },
+    bigfile = { enabled = true },
+    quickfile = { enabled = true },
+    words = { enabled = true },
     -- Enabled features
     notifier = { enabled = true },
     styles = {
@@ -44,6 +42,7 @@ return {
         Snacks.toggle.option("spell", { name = "spell check" }):map(tk("s"))
         Snacks.toggle.option("wrap", { name = "word wrap" }):map(tk("w"))
         Snacks.toggle.option("relativenumber", { name = "relative line numbers" }):map(tk("r"))
+        Snacks.toggle.inlay_hints():map(tk("h"))
         Snacks.toggle.diagnostics():map(tk("d"))
         Snacks.toggle
           .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
