@@ -15,14 +15,48 @@ return {
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = "mono",
+        kind_icons = {
+          Text = "󰉿",
+          Method = "󰆧",
+          Function = "󰊕",
+          Constructor = "",
+
+          Field = "󰜢",
+          Variable = "󰀫",
+          Property = "󰜢",
+
+          Class = "󰠱",
+          Interface = "",
+          Struct = "󰙅",
+          Module = "",
+
+          Unit = "󰑭",
+          Value = "󰎠",
+          Enum = "",
+          EnumMember = "",
+
+          Keyword = "󰌋",
+          Constant = "󰏿",
+
+          Snippet = "",
+          Color = "󰏘",
+          File = "󰈙",
+          Reference = "󰈇",
+          Folder = "󰉋",
+          Event = "",
+          Operator = "󰆕",
+          TypeParameter = "󰬛",
+        },
       },
 
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { "lsp", "path", "luasnip", "snippets", "buffer" },
-        -- optionally disable cmdline completions
-        -- cmdline = {},
+        default = { "lsp", "path", "luasnip", "snippets", "buffer", "lazydev" },
+        providers = {
+          lsp = { fallback_for = { "lazydev" } },
+          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+        },
       },
 
       signature = { enabled = true },
@@ -31,7 +65,7 @@ return {
         menu = {
           draw = {
             columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } },
-            treesitter = { "lsp" },
+            treesitter = true,
           },
         },
       },

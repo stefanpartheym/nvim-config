@@ -42,19 +42,26 @@ return {
       -- used for completion, annotations and signatures of Neovim apis
       "folke/neodev.nvim",
 
-      -- TODO: Enable this instead of `neodev`.
-      -- -- Neovim configuration support for lua_ls.
-      -- {
-      --   "folke/lazydev.nvim",
-      --   ft = "lua", -- only load on lua files
-      --   opts = {
-      --     library = {
-      --       -- See the configuration section for more details
-      --       -- Load luvit types when the `vim.uv` word is found
-      --       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      --     },
-      --   },
-      -- },
+      -- Neovim configuration support for lua_ls.
+      {
+        "folke/lazydev.nvim",
+        dependencies = { "folke/snacks.nvim" },
+        ft = "lua",
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            { path = "snacks.nvim", words = { "Snacks" } },
+          },
+          integrations = {
+            -- Fixes lspconfig's workspace management for LuaLS
+            -- Only create a new workspace if the buffer is not part
+            -- of an existing workspace or one of its libraries
+            lspconfig = true,
+          },
+        },
+      },
 
       -- Completion
       "saghen/blink.cmp",
@@ -210,8 +217,7 @@ return {
               completion = {
                 callSnippet = "Replace",
               },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+              diagnostics = { disable = { "missing-fields" } },
             },
           },
         },
