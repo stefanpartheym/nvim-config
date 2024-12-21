@@ -14,6 +14,7 @@ return {
         ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
         ["<C-e>"] = { "hide" },
         ["<C-y>"] = { "select_and_accept" },
+        ["<CR>"] = { "accept", "fallback" },
 
         ["<C-p>"] = { "select_prev", "fallback" },
         ["<C-n>"] = { "select_next", "fallback" },
@@ -23,6 +24,9 @@ return {
 
         ["<C-l>"] = { "snippet_forward", "fallback" },
         ["<C-h>"] = { "snippet_backward", "fallback" },
+
+        ["<Tab>"] = {},
+        ["<S-Tab>"] = {},
       },
 
       appearance = {
