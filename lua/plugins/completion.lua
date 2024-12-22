@@ -71,8 +71,11 @@ return {
       sources = {
         default = { "lsp", "path", "luasnip", "snippets", "buffer", "lazydev" },
         providers = {
-          lsp = { fallback_for = { "lazydev" } },
-          lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
+          lazydev = {
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
+            fallbacks = { "lsp" },
+          },
         },
       },
 
@@ -82,7 +85,6 @@ return {
         menu = {
           draw = {
             columns = { { "label", "label_description", gap = 1 }, { "kind_icon" } },
-            treesitter = true,
           },
         },
       },
