@@ -65,7 +65,8 @@ return {
       },
 
       -- Completion
-      "saghen/blink.cmp",
+      -- "saghen/blink.cmp",
+      "hrsh7th/nvim-cmp",
 
       "b0o/schemastore.nvim",
     },
@@ -143,7 +144,9 @@ return {
       --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+      capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+      -- TODO: Enable this when blink.cmp is enabled.
+      -- capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
       --- List of manually managed servers (that is, servers not managed by Mason).
       --- @type table<string, lspconfig.Config>
