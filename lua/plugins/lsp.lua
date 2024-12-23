@@ -256,6 +256,8 @@ return {
           "pretty-php",
           "twigcs",
           "djlint",
+          -- DAP
+          "codelldb",
         },
       })
 
