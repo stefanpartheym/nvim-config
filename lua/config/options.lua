@@ -67,7 +67,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = "80,120"
 vim.opt.conceallevel = 2
 
 -- Configure session options (make sure windows like neo-tree is not saved)
