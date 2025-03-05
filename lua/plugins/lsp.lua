@@ -155,16 +155,6 @@ return {
         -- Setup `zls` manually to always use current version from `.zigversion`.
         -- See [ziege](https://github.com/photex/ziege) for more information.
         zls = {},
-        -- NOTE:
-        -- Setup `kotlin_language_server` manually to use forked version from
-        -- [github.com/kotlin-community-tools](https://github.com/kotlin-community-tools/kotlin-language-server).
-        -- This fork contains fixes, that prevent the language server from raising
-        -- annoying internal errors.
-        kotlin_language_server = {
-          cmd = {
-            os.getenv("HOME") .. "/.lsp/kotlin-language-server/server/build/install/server/bin/kotlin-language-server",
-          },
-        },
       }
 
       -- Setup manually managed language servers.
@@ -320,7 +310,6 @@ return {
           php = { "pretty-php" },
           twig = { "djlint" },
           zig = { "zigfmt" },
-          kotlin = { "ktfmt" },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
@@ -333,10 +322,6 @@ return {
             command = "zig",
             args = { "fmt", "--stdin" },
             stdin = true,
-          },
-          ktfmt = {
-            command = "ktfmt",
-            args = { "--kotlinlang-style", "-" },
           },
         },
       }
