@@ -56,7 +56,14 @@ return {
         --     i = { ["<c-enter>"] = "to_fuzzy_refine" },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            hidden = true,
+          },
+          live_grep = {
+            additional_args = { "--hidden" },
+          },
+        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
@@ -82,7 +89,6 @@ return {
         { "<leader>sm", builtin.marks, desc = "Search marks" },
         { "<leader>sM", builtin.man_pages, desc = "Search man pages" },
         { "<leader>sf", builtin.find_files, desc = "Search files" },
-        { "<leader>sp", builtin.git_files, desc = "Search project files (tracked by git)" },
         { "<leader>sg", builtin.live_grep, desc = "Grep search" },
         { "<leader>sw", builtin.grep_string, desc = "Search current word" },
         { "<leader>sd", builtin.diagnostics, desc = "Search diagnostics" },
