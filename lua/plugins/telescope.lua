@@ -59,9 +59,23 @@ return {
         pickers = {
           find_files = {
             hidden = true,
+            no_ignore = true,
+            no_ignore_parent = true,
+            find_command = {
+              "rg",
+              "--files",
+              "--glob=!**/.git/*",
+              "--glob=!**/build/*",
+              "--glob=!**/dist/*",
+            },
           },
           live_grep = {
-            additional_args = { "--hidden" },
+            glob_pattern = {
+              "!**/.git/*",
+              "!**/build/*",
+              "!**/dist/*",
+            },
+            additional_args = { "--hidden", "--no-ignore-vcs" },
           },
         },
         extensions = {
