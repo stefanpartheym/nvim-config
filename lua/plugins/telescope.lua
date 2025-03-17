@@ -45,6 +45,15 @@ return {
       -- telescope picker. This is really useful to discover what Telescope can
       -- do as well as how to actually do it!
 
+      local rg_args = {
+        "--glob=!**/.git/*",
+        "--glob=!**/build/*",
+        "--glob=!**/dist/*",
+        "--glob=!**/node_modules/*",
+        "--hidden",
+        "--no-ignore-vcs",
+      }
+
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require("telescope").setup({
@@ -58,24 +67,17 @@ return {
         -- },
         pickers = {
           find_files = {
-            hidden = true,
-            no_ignore = true,
-            no_ignore_parent = true,
             find_command = {
               "rg",
               "--files",
-              "--glob=!**/.git/*",
-              "--glob=!**/build/*",
-              "--glob=!**/dist/*",
+              unpack(rg_args),
             },
           },
           live_grep = {
-            glob_pattern = {
-              "!**/.git/*",
-              "!**/build/*",
-              "!**/dist/*",
-            },
-            additional_args = { "--hidden", "--no-ignore-vcs" },
+            additional_args = rg_args,
+          },
+          grep_string = {
+            additional_args = rg_args,
           },
         },
         extensions = {
