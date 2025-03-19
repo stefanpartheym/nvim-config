@@ -20,17 +20,17 @@ return {
         name = "lldb",
       }
 
-      dap.configurations.zig = {
-        {
-          name = "Launch",
-          type = "lldb",
-          request = "launch",
-          program = "${workspaceFolder}/zig-out/bin/${workspaceFolderBasename}",
-          cwd = "${workspaceFolder}",
-          stopOnEntry = false,
-          args = {},
-        },
-      }
+      vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticError", numhl = "DiagnosticError" })
+      vim.fn.sign_define(
+        "DapBreakpointCondition",
+        { text = "", texthl = "DiagnosticError", numhl = "DiagnosticError" }
+      )
+      vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "DiagnosticWarn", numhl = "DiagnosticWarn" })
+      vim.fn.sign_define("DapLogPoint", { text = "", texthl = "DiagnosticInfo", numhl = "DiagnosticInfo" })
+      vim.fn.sign_define(
+        "DapStopped",
+        { text = "", texthl = "DiagnosticOk", linehl = "DiagnosticOk", numhl = "DiagnosticOk" }
+      )
 
       vim.keymap.set("n", "<leader>db", dap.toggle_breakpoint)
       vim.keymap.set("n", "<leader>dc", dap.run_to_cursor)
@@ -40,11 +40,11 @@ return {
         require("dapui").eval(nil, { enter = true })
       end)
 
-      vim.keymap.set("n", "<F1>", dap.continue)
-      vim.keymap.set("n", "<F2>", dap.step_into)
-      vim.keymap.set("n", "<F3>", dap.step_over)
-      vim.keymap.set("n", "<F4>", dap.step_out)
-      vim.keymap.set("n", "<F5>", dap.step_back)
+      vim.keymap.set("n", "<F9>", dap.continue)
+      vim.keymap.set("n", "<F7>", dap.step_into)
+      vim.keymap.set("n", "<F8>", dap.step_over)
+      vim.keymap.set("n", "<S-F7>", dap.step_out)
+      vim.keymap.set("n", "<S-F8>", dap.step_back)
 
       dap.listeners.before.attach.dapui_config = function()
         ui.open()
