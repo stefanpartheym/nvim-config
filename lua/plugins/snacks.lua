@@ -16,6 +16,7 @@ return {
     notifier = { enabled = true },
     input = { enabled = true },
     indent = {
+      animate = { enabled = false },
       indent = { char = "▏", hl = "SnacksIndent" },
       scope = { char = "▏", hl = "SnacksIndentScope" },
     },
