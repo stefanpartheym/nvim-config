@@ -50,6 +50,7 @@ return {
         "--glob=!**/build/*",
         "--glob=!**/dist/*",
         "--glob=!**/node_modules/*",
+        "--glob=!**/.zig-cache/*",
         "--hidden",
         "--no-ignore-vcs",
       }
