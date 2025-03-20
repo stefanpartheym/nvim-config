@@ -58,6 +58,7 @@ return {
           function()
             require("dapui").eval(nil, { enter = true })
           end,
+          mode = { "n", "v" },
           desc = "Eval expression",
         },
         { "<F9>", dap.continue, desc = "Start/Continue" },
