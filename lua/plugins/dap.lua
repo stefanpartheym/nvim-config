@@ -6,13 +6,16 @@ return {
       "theHamsta/nvim-dap-virtual-text",
       "nvim-neotest/nvim-nio",
       "williamboman/mason.nvim",
+      "stevearc/overseer.nvim",
     },
     config = function()
       local dap = require("dap")
       local ui = require("dapui")
+      local overseer = require("overseer")
 
       require("dapui").setup()
       require("nvim-dap-virtual-text").setup({})
+      overseer.enable_dap()
 
       dap.adapters.lldb = {
         type = "executable",

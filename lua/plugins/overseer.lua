@@ -1,6 +1,8 @@
 return {
   {
     "stevearc/overseer.nvim",
-    opts = {},
+    opts = {
+      dap = false,
+    },
   },
 }
