@@ -12,6 +12,20 @@ local function intelephense_get_license_key()
   return string.gsub(content, "%s+", "")
 end
 
+--- Get path to a mason package.
+---@param name string
+---@param path? string
+local function mason_get_package_path(name, path)
+  local mason_registry = require("mason-registry")
+  local package = mason_registry.get_package(name)
+  if path == nil then
+    path = ""
+  else
+    path = "/" .. path
+  end
+  return package:get_install_path() .. path
+end
+
 return {
   -- LSP Configuration & Plugins
   {
@@ -166,6 +180,7 @@ return {
       --- List of configs for language servers managed by Mason.
       --- @type table<string, lspconfig.Config>
       local mason_managed_servers = {
+        -- Lua
         lua_ls = {
           settings = {
             Lua = {
@@ -177,6 +192,7 @@ return {
           },
         },
 
+        -- PHP
         intelephense = {
           init_options = {
             globalStoragePath = intelephense_get_storage_path(),
@@ -184,8 +200,56 @@ return {
           },
         },
 
-        -- TODO: Consider also using [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim)
-        ts_ls = {
+        -- Typescript
+        -- TODO: Consider using [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim)
+        vtsls = {
+          filetypes = {
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+            "vue",
+          },
+          settings = {
+            complete_function_calls = true,
+            vtsls = {
+              tsserver = {
+                globalPlugins = {
+                  {
+                    name = "@vue/typescript-plugin",
+                    location = mason_get_package_path("vue-language-server", "node_modules/@vue/language-server"),
+                    languages = { "vue" },
+                    configNamespace = "typescript",
+                    enableForWorkspaceTypeScriptVersions = true,
+                  },
+                },
+              },
+              enableMoveToFileCodeAction = true,
+              autoUseWorkspaceTsdk = true,
+              experimental = {
+                maxInlayHintLength = 30,
+                completion = {
+                  enableServerSideFuzzyMatch = true,
+                },
+              },
+            },
+            typescript = {
+              updateImportsOnFileMove = { enabled = "always" },
+              suggest = {
+                completeFunctionCalls = true,
+              },
+              inlayHints = {
+                enumMemberValues = { enabled = true },
+                functionLikeReturnTypes = { enabled = true },
+                parameterNames = { enabled = "literals" },
+                parameterTypes = { enabled = true },
+                propertyDeclarationTypes = { enabled = true },
+                variableTypes = { enabled = false },
+              },
+            },
+          },
           init_options = {
             preferences = {
               quotePreference = "single",
@@ -194,6 +258,16 @@ return {
           },
         },
 
+        -- Vue
+        volar = {
+          init_options = {
+            vue = {
+              hybridMode = true,
+            },
+          },
+        },
+
+        -- JSON
         jsonls = {
           settings = {
             json = {
@@ -203,6 +277,7 @@ return {
           },
         },
 
+        -- YAML
         yamlls = {
           settings = {
             yaml = {
@@ -234,7 +309,7 @@ return {
           "css-lsp",
           "html-lsp",
           "emmet-ls",
-          "typescript-language-server",
+          "vtsls",
           "vue-language-server",
           "intelephense",
           -- Formatters/linters/etc.
@@ -267,7 +342,7 @@ return {
     end,
   },
 
-  -- Autoformat
+  -- Formatter
   {
     "stevearc/conform.nvim",
     lazy = false,
