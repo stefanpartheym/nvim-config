@@ -52,7 +52,16 @@ return {
       local dap = require("dap")
       return {
         { "<leader>db", dap.toggle_breakpoint, desc = "Toggle breakpoint" },
+        {
+          "<leader>dB",
+          function()
+            dap.set_breakpoint(vim.fn.input("Breakpoint condition: "))
+          end,
+          desc = "Set conditional breakpoint",
+        },
         { "<leader>dc", dap.run_to_cursor, desc = "Run to cursor" },
+        { "<leader>dP", dap.pause, desc = "Pause" },
+        { "<leader>dt", dap.terminate, desc = "Terminate" },
         {
           "<leader>d?",
           function()
