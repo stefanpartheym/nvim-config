@@ -60,6 +60,19 @@ return {
     vim.api.nvim_create_autocmd("User", {
       pattern = "VeryLazy",
       callback = function()
+        local format = require("util.format")
+        --- Create autoformat toggle.
+        local autoformat_toggle = Snacks.toggle.new({
+          id = "autoformat",
+          name = "Auto format",
+          get = function()
+            return format.autoformat_enabled()
+          end,
+          set = function(state)
+            vim.g.autoformat = state
+          end,
+        })
+
         -- Setup toggles
         Snacks.toggle.option("spell", { name = "spell check" }):map(tk("s"))
         Snacks.toggle.option("wrap", { name = "word wrap" }):map(tk("w"))
@@ -70,6 +83,7 @@ return {
           .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
           :map(tk("c"))
         Snacks.toggle.zen():map(tk("z"))
+        autoformat_toggle:map(tk("f"))
 
         -- Setup indent colors
         local palette = require("onedark.palette")[vim.g.onedark_config.style]

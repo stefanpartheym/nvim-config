@@ -272,24 +272,14 @@ return {
     "stevearc/conform.nvim",
     lazy = false,
     keys = function()
-      local format = require("util.format")
       return {
         {
           "<leader>cf",
           function()
-            if format.autoformat_enabled() then
-              require("conform").format({ async = true, lsp_fallback = true })
-            end
+            require("conform").format({ async = true, lsp_fallback = true })
           end,
           mode = "",
           desc = "Format buffer",
-        },
-        {
-          "<leader>tf",
-          function()
-            format.autoformat_toggle()
-          end,
-          desc = "Toggle auto format",
         },
       }
     end,
