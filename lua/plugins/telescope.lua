@@ -45,16 +45,6 @@ return {
       -- telescope picker. This is really useful to discover what Telescope can
       -- do as well as how to actually do it!
 
-      local rg_args = {
-        "--glob=!**/.git/*",
-        "--glob=!**/build/*",
-        "--glob=!**/dist/*",
-        "--glob=!**/node_modules/*",
-        "--glob=!**/.zig-cache/*",
-        "--hidden",
-        "--no-ignore-vcs",
-      }
-
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
       require("telescope").setup({
@@ -66,21 +56,6 @@ return {
         --     i = { ["<c-enter>"] = "to_fuzzy_refine" },
         --   },
         -- },
-        pickers = {
-          find_files = {
-            find_command = {
-              "rg",
-              "--files",
-              unpack(rg_args),
-            },
-          },
-          live_grep = {
-            additional_args = rg_args,
-          },
-          grep_string = {
-            additional_args = rg_args,
-          },
-        },
         extensions = {
           ["ui-select"] = {
             require("telescope.themes").get_dropdown(),
