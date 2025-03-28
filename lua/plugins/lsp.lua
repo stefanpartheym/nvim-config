@@ -200,32 +200,42 @@ return {
           },
         },
 
-        -- Typescript
+        -- TypeScript
+
         -- TODO: Consider using [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim)
+
+        -- Alternative TypeScript LSP:
+        -- ts_ls = {
+        --   init_options = {
+        --     preferences = {
+        --       quotePreference = "single",
+        --       importModuleSpecifierPreference = "project-relative",
+        --     },
+        --   },
+        -- },
+
+        -- vscode TypeScript LSP:
         vtsls = {
           filetypes = {
             "javascript",
             "javascriptreact",
-            "javascript.jsx",
             "typescript",
             "typescriptreact",
-            "typescript.tsx",
-            "vue",
           },
           settings = {
             complete_function_calls = true,
             vtsls = {
-              tsserver = {
-                globalPlugins = {
-                  {
-                    name = "@vue/typescript-plugin",
-                    location = mason_get_package_path("vue-language-server", "node_modules/@vue/language-server"),
-                    languages = { "vue" },
-                    configNamespace = "typescript",
-                    enableForWorkspaceTypeScriptVersions = true,
-                  },
-                },
-              },
+              -- tsserver = {
+              --   globalPlugins = {
+              --     {
+              --       name = "@vue/typescript-plugin",
+              --       location = mason_get_package_path("vue-language-server", "node_modules/@vue/language-server"),
+              --       languages = { "vue" },
+              --       configNamespace = "typescript",
+              --       enableForWorkspaceTypeScriptVersions = true,
+              --     },
+              --   },
+              -- },
               enableMoveToFileCodeAction = true,
               autoUseWorkspaceTsdk = true,
               experimental = {
@@ -262,7 +272,8 @@ return {
         volar = {
           init_options = {
             vue = {
-              hybridMode = true,
+              -- Use Volar's builtin TypeScript language features.
+              hybridMode = false,
             },
           },
         },
