@@ -361,7 +361,8 @@ return {
     opts = function()
       local format = require("util.format")
       local opts = {
-        notify_on_error = false,
+        notify_on_error = true,
+        notify_no_formatters = true,
         format_on_save = function()
           if format.autoformat_enabled() then
             return { timeout_ms = 1000 }
