@@ -268,10 +268,10 @@ return {
         },
 
         -- Vue
-        volar = {
+        vue_ls = {
           init_options = {
             vue = {
-              -- Use Volar's builtin TypeScript language features.
+              -- Use vue_ls's builtin TypeScript language features.
               hybridMode = false,
             },
           },
