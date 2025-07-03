@@ -12,20 +12,6 @@ local function intelephense_get_license_key()
   return string.gsub(content, "%s+", "")
 end
 
---- Get path to a mason package.
----@param name string
----@param path? string
-local function mason_get_package_path(name, path)
-  local mason_registry = require("mason-registry")
-  local package = mason_registry.get_package(name)
-  if path == nil then
-    path = ""
-  else
-    path = "/" .. path
-  end
-  return package:get_install_path() .. path
-end
-
 return {
   -- LSP Configuration & Plugins
   {
