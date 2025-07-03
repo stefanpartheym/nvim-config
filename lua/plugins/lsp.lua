@@ -166,7 +166,7 @@ return {
       local servers = {
         -- NOTE:
         -- Setup `zls` manually to always use current version from `.zigversion`.
-        -- See [ziege](https://github.com/photex/ziege) for more information.
+        -- See [anyzig](https://github.com/marler8997/anyzig) for more information.
         zls = {},
       }
 
