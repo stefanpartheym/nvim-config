@@ -153,7 +153,9 @@ return {
         -- NOTE:
         -- Setup `zls` manually to always use current version from `.zigversion`.
         -- See [anyzig](https://github.com/marler8997/anyzig) for more information.
-        zls = {},
+        zls = {
+          cmd = {},
+        },
       }
 
       -- Setup manually managed language servers.
@@ -167,6 +169,7 @@ return {
       local mason_managed_servers = {
         -- Lua
         lua_ls = {
+          cmd = {},
           settings = {
             Lua = {
               completion = {
@@ -179,6 +182,7 @@ return {
 
         -- PHP
         intelephense = {
+          cmd = {},
           init_options = {
             globalStoragePath = intelephense_get_storage_path(),
             licenceKey = intelephense_get_license_key(),
@@ -201,6 +205,7 @@ return {
 
         -- vscode TypeScript LSP:
         vtsls = {
+          cmd = {},
           filetypes = {
             "javascript",
             "javascriptreact",
@@ -255,6 +260,7 @@ return {
 
         -- Vue
         vue_ls = {
+          cmd = {},
           init_options = {
             vue = {
               -- Use vue_ls's builtin TypeScript language features.
@@ -265,6 +271,7 @@ return {
 
         -- JSON
         jsonls = {
+          cmd = {},
           settings = {
             json = {
               schemas = require("schemastore").json.schemas(),
@@ -275,6 +282,7 @@ return {
 
         -- YAML
         yamlls = {
+          cmd = {},
           settings = {
             yaml = {
               schemaStore = {
