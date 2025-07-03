@@ -165,15 +165,16 @@ return {
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+      --- Partial lspconfig.Config
+      --- @class LspconfigConfigPartial : lspconfig.Config, {}
+
       --- List of manually managed servers (that is, servers not managed by Mason).
-      --- @type table<string, lspconfig.Config>
+      --- @type table<string, LspconfigConfigPartial>
       local servers = {
         -- NOTE:
         -- Setup `zls` manually to always use current version from `.minimum_zig_version` from the `build.zig.zon`.
         -- See [anyzig](https://github.com/marler8997/anyzig) for more information.
-        zls = {
-          cmd = {},
-        },
+        zls = {},
       }
 
       -- Setup manually managed language servers.
@@ -183,11 +184,10 @@ return {
       end
 
       --- List of configs for language servers managed by Mason.
-      --- @type table<string, lspconfig.Config>
+      --- @type table<string, LspconfigConfigPartial>
       local mason_managed_servers = {
         -- Lua
         lua_ls = {
-          cmd = {},
           settings = {
             Lua = {
               completion = {
@@ -200,7 +200,6 @@ return {
 
         -- PHP
         intelephense = {
-          cmd = {},
           init_options = {
             globalStoragePath = intelephense_get_storage_path(),
             licenceKey = intelephense_get_license_key(),
@@ -223,7 +222,6 @@ return {
 
         -- vscode TypeScript LSP:
         vtsls = {
-          cmd = {},
           filetypes = {
             "javascript",
             "javascriptreact",
@@ -278,7 +276,6 @@ return {
 
         -- Vue
         vue_ls = {
-          cmd = {},
           init_options = {
             vue = {
               -- Use vue_ls's builtin TypeScript language features.
@@ -289,7 +286,6 @@ return {
 
         -- JSON
         jsonls = {
-          cmd = {},
           settings = {
             json = {
               schemas = require("schemastore").json.schemas(),
@@ -300,7 +296,6 @@ return {
 
         -- YAML
         yamlls = {
-          cmd = {},
           settings = {
             yaml = {
               schemaStore = {
