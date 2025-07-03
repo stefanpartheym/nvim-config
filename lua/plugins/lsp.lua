@@ -18,9 +18,10 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
+      -- Mason must be loaded before its dependents so we need to set it up here.
       {
-        "williamboman/mason.nvim",
-        config = true,
+        "mason-org/mason.nvim",
+        opts = {},
         keys = {
           {
             "<leader>cm",
@@ -30,17 +31,13 @@ return {
             desc = "Open Mason",
           },
         },
-      }, -- NOTE: Must be loaded before dependants
+      },
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
-
       -- Useful status updates for LSP.
       "j-hui/fidget.nvim",
-
-      -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
-      -- used for completion, annotations and signatures of Neovim apis
-      "folke/neodev.nvim",
-
+      -- Allows extra capabilities provided by blink.cmp
+      "saghen/blink.cmp",
       -- Neovim configuration support for lua_ls.
       {
         "folke/lazydev.nvim",
@@ -62,10 +59,6 @@ return {
           },
         },
       },
-
-      -- Completion
-      "saghen/blink.cmp",
-
       "b0o/schemastore.nvim",
     },
     config = function()
@@ -137,18 +130,46 @@ return {
         end,
       })
 
+      -- Diagnostic Config
+      -- See :help vim.diagnostic.Opts
+      vim.diagnostic.config({
+        severity_sort = true,
+        float = { border = "rounded", source = "if_many" },
+        underline = { severity = vim.diagnostic.severity.ERROR },
+        signs = vim.g.have_nerd_font and {
+          text = {
+            [vim.diagnostic.severity.ERROR] = "󰅚 ",
+            [vim.diagnostic.severity.WARN] = "󰀪 ",
+            [vim.diagnostic.severity.INFO] = "󰋽 ",
+            [vim.diagnostic.severity.HINT] = "󰌶 ",
+          },
+        } or {},
+        virtual_text = {
+          source = "if_many",
+          spacing = 2,
+          format = function(diagnostic)
+            local diagnostic_message = {
+              [vim.diagnostic.severity.ERROR] = diagnostic.message,
+              [vim.diagnostic.severity.WARN] = diagnostic.message,
+              [vim.diagnostic.severity.INFO] = diagnostic.message,
+              [vim.diagnostic.severity.HINT] = diagnostic.message,
+            }
+            return diagnostic_message[diagnostic.severity]
+          end,
+        },
+      })
+
       -- LSP servers and clients are able to communicate to each other what features they support.
       --  By default, Neovim doesn't support everything that is in the LSP specification.
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
-      --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+      --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
+      local capabilities = require("blink.cmp").get_lsp_capabilities()
 
       --- List of manually managed servers (that is, servers not managed by Mason).
       --- @type table<string, lspconfig.Config>
       local servers = {
         -- NOTE:
-        -- Setup `zls` manually to always use current version from `.zigversion`.
+        -- Setup `zls` manually to always use current version from `.minimum_zig_version` from the `build.zig.zon`.
         -- See [anyzig](https://github.com/marler8997/anyzig) for more information.
         zls = {
           cmd = {},
@@ -295,8 +316,6 @@ return {
         },
       }
 
-      -- Setup Mason.
-      require("mason").setup()
       -- Ensure the following servers and tools are installed via Mason.
       require("mason-tool-installer").setup({
         ensure_installed = {
