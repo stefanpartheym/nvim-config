@@ -1,23 +1,12 @@
 local map = vim.keymap.set
-local unmap = vim.keymap.del
-
---
--- Clear default keymaps
---
-
--- Unmap `gra`, `grn` and `grr` in order to be able to use `gr`.
-unmap({ "n", "x" }, "gra")
-unmap("n", "grn")
-unmap("n", "grr")
 
 --
 -- General
 --
-map("n", "<C-y>", "<Cmd>%y+<Cr>", { desc = "Copy current buffer to system clipboard" })
 map("x", "<leader>p", '"_dP', { desc = "Paste without yank" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
-map("n", "<Esc>", "<cmd>nohlsearch<CR>")
-map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
+map("n", "<Esc>", "<cmd>nohlsearch<cr>")
+map("n", "<leader>q", "<cmd>qa<cr>", { desc = "Quit all" })
 
 --
 -- Windows
@@ -42,10 +31,6 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 -- Better indenting (will keep visual mode after indentation)
 map("v", "<", "<gv")
 map("v", ">", ">gv")
-
--- Cursor navigation (insert mode)
-map("i", "<C-b>", "<Esc>^i", { desc = "Move cursor to beginning of line" })
-map("i", "<C-e>", "<End>", { desc = "Move cursor to end of line" })
 
 --
 -- Terminal
