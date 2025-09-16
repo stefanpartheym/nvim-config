@@ -1,3 +1,8 @@
+--
+-- Keymaps
+-- (see https://neovim.io/doc/user/vim_diff.html#_default-mappings for default neovim mappings)
+--
+
 local map = vim.keymap.set
 
 --
