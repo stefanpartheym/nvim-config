@@ -165,11 +165,8 @@ return {
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-      --- Partial lspconfig.Config
-      --- @class LspconfigConfigPartial : lspconfig.Config, {}
-
       --- List of manually managed servers (that is, servers not managed by Mason).
-      --- @type table<string, LspconfigConfigPartial>
+      --- @type table<string, vim.lsp.Config>
       local servers = {
         -- NOTE:
         -- Setup `zls` manually to always use current version from `.minimum_zig_version` from the `build.zig.zon`.
@@ -180,11 +177,11 @@ return {
       -- Setup manually managed language servers.
       for server_name, server in pairs(servers) do
         server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-        require("lspconfig")[server_name].setup(server)
+        vim.lsp.config[server_name] = server
       end
 
       --- List of configs for language servers managed by Mason.
-      --- @type table<string, LspconfigConfigPartial>
+      --- @type table<string, vim.lsp.Config>
       local mason_managed_servers = {
         -- Lua
         lua_ls = {
@@ -350,7 +347,7 @@ return {
             -- by the server configuration above. Useful when disabling
             -- certain features of an LSP (for example, turning off formatting for ts_ls)
             server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            require("lspconfig")[server_name].setup(server)
+            vim.lsp.config[server_name] = server
           end,
         },
       })
