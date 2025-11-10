@@ -208,62 +208,31 @@ return {
 
         -- TODO: Consider using [typescript-tools.nvim](https://github.com/pmizio/typescript-tools.nvim)
 
-        -- Alternative TypeScript LSP:
-        -- ts_ls = {
-        --   init_options = {
-        --     preferences = {
-        --       quotePreference = "single",
-        --       importModuleSpecifierPreference = "project-relative",
-        --     },
-        --   },
-        -- },
-
-        -- vscode TypeScript LSP:
-        vtsls = {
+        -- Default TypeScript LSP:
+        ts_ls = {
           filetypes = {
             "javascript",
             "javascriptreact",
             "typescript",
             "typescriptreact",
           },
-          settings = {
-            complete_function_calls = true,
-            vtsls = {
-              -- tsserver = {
-              --   globalPlugins = {
-              --     {
-              --       name = "@vue/typescript-plugin",
-              --       location = mason_get_package_path("vue-language-server", "node_modules/@vue/language-server"),
-              --       languages = { "vue" },
-              --       configNamespace = "typescript",
-              --       enableForWorkspaceTypeScriptVersions = true,
-              --     },
-              --   },
-              -- },
-              enableMoveToFileCodeAction = true,
-              autoUseWorkspaceTsdk = true,
-              experimental = {
-                maxInlayHintLength = 30,
-                completion = {
-                  enableServerSideFuzzyMatch = true,
-                },
-              },
-            },
-            typescript = {
-              updateImportsOnFileMove = { enabled = "always" },
-              suggest = {
-                completeFunctionCalls = true,
-              },
-              inlayHints = {
-                enumMemberValues = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                parameterNames = { enabled = "literals" },
-                parameterTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                variableTypes = { enabled = false },
-              },
-            },
-          },
+          -- settings = {
+          --   complete_function_calls = true,
+          --   typescript = {
+          --     updateImportsOnFileMove = { enabled = "always" },
+          --     suggest = {
+          --       completeFunctionCalls = true,
+          --     },
+          --     inlayHints = {
+          --       enumMemberValues = { enabled = true },
+          --       functionLikeReturnTypes = { enabled = true },
+          --       parameterNames = { enabled = "literals" },
+          --       parameterTypes = { enabled = true },
+          --       propertyDeclarationTypes = { enabled = true },
+          --       variableTypes = { enabled = false },
+          --     },
+          --   },
+          -- },
           init_options = {
             preferences = {
               quotePreference = "single",
@@ -322,7 +291,7 @@ return {
           "css-lsp",
           "html-lsp",
           "emmet-ls",
-          "vtsls",
+          "typescript-language-server",
           "vue-language-server",
           "intelephense",
           -- Formatters/linters/etc.
