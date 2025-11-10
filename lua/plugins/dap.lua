@@ -17,6 +17,42 @@ return {
       require("nvim-dap-virtual-text").setup({})
       overseer.enable_dap()
 
+      -- TODO: Consider using the following default config for zig, to be able
+      -- to select an executable from the current directory to debug.
+      --
+      -- ```lua
+      -- dap.configurations.zig = {
+      --   {
+      --     name = "Zig debug",
+      --     type = "lldb",
+      --     request = "launch",
+      --     program = function()
+      --       local co = coroutine.running()
+      --       local cb = nil
+      --       if co then
+      --         cb = function(item)
+      --           coroutine.resume(co, item)
+      --         end
+      --       end
+      --       if cb then
+      --         cb = vim.schedule_wrap(cb)
+      --         vim.ui.select(vim.fn.glob(vim.fn.getcwd() .. "/zig-out/**/*", false, true), {
+      --           prompt = "Select executable",
+      --           kind = "file",
+      --           format_item = function(item)
+      --             return vim.fn.fnamemodify(item, ":t")
+      --           end,
+      --         }, cb)
+      --       end
+      --       return coroutine.yield()
+      --     end,
+      --     cwd = "${workspaceFolder}",
+      --     stopOnEntry = false,
+      --     args = {},
+      --   },
+      -- }
+      -- ```
+
       dap.adapters.lldb = {
         type = "executable",
         command = vim.fn.exepath("codelldb"),
