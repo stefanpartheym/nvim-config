@@ -1,6 +1,11 @@
 return {
   { "folke/tokyonight.nvim" },
-  { "navarasu/onedark.nvim", opts = { style = "warmer" } },
+  {
+    "navarasu/onedark.nvim",
+    version = "v0.1.0",
+    priority = 1000, -- make sure to load this before all the other start plugins
+    opts = { style = "warmer" },
+  },
 
   -- Gruvbox
   -- {
