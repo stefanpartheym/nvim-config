@@ -33,6 +33,7 @@ return {
   {
     "echasnovski/mini.surround",
     config = function()
+      -- TODO: Consider using default mappings.
       local mappings = {
         add = "gsa", -- Add surrounding in Normal and Visual modes
         delete = "gsd", -- Delete surrounding
