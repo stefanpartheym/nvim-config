@@ -178,6 +178,7 @@ return {
       for server_name, server in pairs(servers) do
         server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
         vim.lsp.config[server_name] = server
+        vim.lsp.enable(server_name)
       end
 
       --- List of configs for language servers managed by Mason.
