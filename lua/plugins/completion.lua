@@ -3,11 +3,6 @@ return {
     "saghen/blink.cmp",
     version = "1.*",
     dependencies = {
-      {
-        "L3MON4D3/LuaSnip",
-        -- TODO: Currently pinned to v2.3 due to https://github.com/Saghen/blink.cmp/issues/517
-        version = "2.3",
-      },
       { "rafamadriz/friendly-snippets" },
     },
     ---@module 'blink.cmp'
@@ -22,7 +17,6 @@ return {
         ["<S-Tab>"] = { "fallback" },
       },
       appearance = { nerd_font_variant = "mono" },
-      snippets = { preset = "luasnip" },
       signature = { enabled = false },
       fuzzy = { implementation = "lua" },
       sources = {
