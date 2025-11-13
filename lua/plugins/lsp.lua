@@ -308,19 +308,24 @@ return {
         },
       })
 
-      -- Setup language servers managed by Mason.
-      require("mason-lspconfig").setup({
-        handlers = {
-          function(server_name)
-            local server = mason_managed_servers[server_name] or {}
-            -- This handles overriding only values explicitly passed
-            -- by the server configuration above. Useful when disabling
-            -- certain features of an LSP (for example, turning off formatting for ts_ls)
-            server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-            vim.lsp.config[server_name] = server
-          end,
-        },
-      })
+      -- Configure manually managed LSP servers
+      for server_name, server_config in pairs(servers) do
+        vim.lsp.config[server_name] = server_config
+      end
+
+      -- Configure LSP servers managed by Mason
+      local mason_lspconfig = require("mason-lspconfig")
+      local installed_mason_managed_servers = mason_lspconfig.get_installed_servers()
+      for _, server_name in ipairs(installed_mason_managed_servers) do
+        local server_config = mason_managed_servers[server_name] or {}
+        -- This handles overriding only values explicitly passed
+        -- by the server configuration above. Useful when disabling
+        -- certain features of an LSP (for example, turning off formatting for ts_ls)
+        server_config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server_config.capabilities or {})
+        vim.lsp.config[server_name] = server_config
+      end
+      -- Setup LSP servers managed by Mason
+      mason_lspconfig.setup()
     end,
   },
 
