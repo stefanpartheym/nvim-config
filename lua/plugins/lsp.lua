@@ -276,6 +276,11 @@ return {
             },
           },
         },
+
+        -- superhtml
+        superhtml = {
+          filetypes = { "superhtml" },
+        },
       }
 
       -- Ensure the following servers and tools are installed via Mason.
@@ -290,6 +295,7 @@ return {
           "lemminx", -- XML language server
           "css-lsp",
           "html-lsp",
+          "superhtml",
           "emmet-ls",
           "typescript-language-server",
           "vue-language-server",
@@ -363,6 +369,7 @@ return {
           php = { "pretty-php" },
           twig = { "djlint" },
           zig = { "zigfmt" },
+          superhtml = { "superhtmlfmtsuper" },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
@@ -374,6 +381,11 @@ return {
           zigfmt = {
             command = "zig",
             args = { "fmt", "--stdin" },
+            stdin = true,
+          },
+          superhtmlfmtsuper = {
+            command = "superhtml",
+            args = { "fmt", "--stdin-super" },
             stdin = true,
           },
         },
