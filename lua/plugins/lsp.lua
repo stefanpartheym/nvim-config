@@ -307,7 +307,8 @@ return {
           "clang-format",
           "xmlformatter",
           "pretty-php",
-          "twigcs",
+          -- NOTE: Disable twigcs for now, because mason repo points to the wrong file to download.
+          -- "twigcs",
           "djlint",
           -- DAP
           "codelldb",
