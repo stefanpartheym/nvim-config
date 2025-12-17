@@ -165,6 +165,9 @@ return {
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require("blink.cmp").get_lsp_capabilities()
 
+      -- Command for running GtkCssLanguageServer.
+      local gtkcssls_cmd = require("os").getenv("HOME") .. "/.local/bin/gtkcsslanguageserver"
+
       --- List of manually managed servers (that is, servers not managed by Mason).
       --- @type table<string, vim.lsp.Config>
       local servers = {
@@ -172,6 +175,10 @@ return {
         -- Setup `zls` manually to always use current version from `.minimum_zig_version` from the `build.zig.zon`.
         -- See [anyzig](https://github.com/marler8997/anyzig) for more information.
         zls = {},
+        gtkcssls = {
+          cmd = { gtkcssls_cmd },
+          filetypes = { "css" },
+        },
       }
 
       -- Setup manually managed language servers.
@@ -194,6 +201,36 @@ return {
               diagnostics = { disable = { "missing-fields" } },
             },
           },
+        },
+
+        -- CSS
+        cssls = {
+          on_attach = function(client, bufnr)
+            ---@param str string
+            ---@return boolean
+            local function bufcontent_match(str)
+              local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+              local content = table.concat(lines, "\n")
+              return content:match(str)
+            end
+
+            ---@param str string
+            ---@return boolean
+            local function bufname_match(str)
+              local bufname = vim.api.nvim_buf_get_name(bufnr)
+              return bufname:match(str)
+            end
+
+            -- Disable cssls when the GTK specific gtkcssls is available and
+            -- the edited file is either in `~/.config/...` or contains
+            -- `@define-color`.
+            if
+              vim.fn.executable(gtkcssls_cmd)
+              and (bufname_match("^" .. vim.fn.expand("~/.config")) or bufcontent_match("@define%-color"))
+            then
+              vim.lsp.stop_client(client.id)
+            end
+          end,
         },
 
         -- PHP
