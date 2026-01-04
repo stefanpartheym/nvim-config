@@ -408,6 +408,7 @@ return {
           twig = { "djlint" },
           zig = { "zigfmt" },
           superhtml = { "superhtmlfmtsuper" },
+          sh = { "shfmt" },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
