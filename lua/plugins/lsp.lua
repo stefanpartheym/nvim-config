@@ -343,6 +343,8 @@ return {
           "prettier",
           "clang-format",
           "xmlformatter",
+          "tflint",
+          "terraform",
           "pretty-php",
           -- NOTE: Disable twigcs for now, because mason repo points to the wrong file to download.
           -- "twigcs",
@@ -409,6 +411,9 @@ return {
           zig = { "zigfmt" },
           superhtml = { "superhtmlfmtsuper" },
           sh = { "shfmt" },
+          terraform = { "terraform_fmt" },
+          tf = { "terraform_fmt" },
+          ["terraform-vars"] = { "terraform_fmt" },
           -- Conform can also run multiple formatters sequentially
           -- python = { "isort", "black" },
           --
