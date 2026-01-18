@@ -12,6 +12,25 @@ local function intelephense_get_license_key()
   return string.gsub(content, "%s+", "")
 end
 
+local function is_gtkcss(bufnr)
+  ---@param str string
+  ---@return boolean
+  local function bufcontent_match(str)
+    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    local content = table.concat(lines, "\n")
+    return content:match(str)
+  end
+
+  ---@param str string
+  ---@return boolean
+  local function bufname_match(str)
+    local bufname = vim.api.nvim_buf_get_name(bufnr)
+    return bufname:match(str)
+  end
+
+  return bufname_match("^" .. vim.fn.expand("~/.config")) or bufcontent_match("@define%-color")
+end
+
 return {
   -- LSP Configuration & Plugins
   {
@@ -178,6 +197,12 @@ return {
         gtkcssls = {
           cmd = { gtkcssls_cmd },
           filetypes = { "css" },
+          on_attach = function(client, bufnr)
+            -- Disable (force stop) gtkcssls when editing a regular CSS file.
+            if not is_gtkcss(bufnr) then
+              vim.lsp.stop_client(client.id, true)
+            end
+          end,
         },
       }
 
@@ -206,28 +231,10 @@ return {
         -- CSS
         cssls = {
           on_attach = function(client, bufnr)
-            ---@param str string
-            ---@return boolean
-            local function bufcontent_match(str)
-              local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-              local content = table.concat(lines, "\n")
-              return content:match(str)
-            end
-
-            ---@param str string
-            ---@return boolean
-            local function bufname_match(str)
-              local bufname = vim.api.nvim_buf_get_name(bufnr)
-              return bufname:match(str)
-            end
-
             -- Disable cssls when the GTK specific gtkcssls is available and
             -- the edited file is either in `~/.config/...` or contains
             -- `@define-color`.
-            if
-              vim.fn.executable(gtkcssls_cmd)
-              and (bufname_match("^" .. vim.fn.expand("~/.config")) or bufcontent_match("@define%-color"))
-            then
+            if vim.fn.executable(gtkcssls_cmd) and is_gtkcss(bufnr) then
               vim.lsp.stop_client(client.id)
             end
           end,
