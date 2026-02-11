@@ -129,39 +129,41 @@ return {
         desc = "Toggle file tree",
       },
     },
-    opts = function(_, opts)
-      local function on_rename(data)
-        Snacks.rename.on_rename_file(data.source, data.destination)
-      end
-      local events = require("neo-tree.events")
-      local event_handlers = vim.list_extend(opts.event_handlers or {}, {
-        { event = events.FILE_MOVED, handler = on_rename },
-        { event = events.FILE_RENAMED, handler = on_rename },
-      })
-
-      return {
-        filesystem = {
-          use_libuv_file_watcher = true,
-          follow_current_file = {
-            enabled = true,
-            leave_dirs_open = false,
-          },
-          filtered_items = {
-            hide_dotfiles = false,
-            hide_gitignored = false,
-          },
+    opts = {
+      event_handlers = {
+        {
+          event = "file_moved",
+          handler = function(data)
+            Snacks.rename.on_rename_file(data.source, data.destination)
+          end,
         },
-        window = {
-          mappings = {
-            ["<Bs>"] = "close_node",
-            ["h"] = "close_node",
-            ["l"] = "toggle_node",
-            ["<Space>"] = "",
-          },
+        {
+          event = "file_renamed",
+          handler = function(data)
+            Snacks.rename.on_rename_file(data.source, data.destination)
+          end,
         },
-        event_handlers = event_handlers,
-      }
-    end,
+      },
+      filesystem = {
+        use_libuv_file_watcher = true,
+        follow_current_file = {
+          enabled = true,
+          leave_dirs_open = false,
+        },
+        filtered_items = {
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
+      },
+      window = {
+        mappings = {
+          ["<Bs>"] = "close_node",
+          ["h"] = "close_node",
+          ["l"] = "toggle_node",
+          ["<Space>"] = "",
+        },
+      },
+    },
   },
 
   -- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
