@@ -333,6 +333,7 @@ return {
           -- Language servers
           "lua-language-server",
           "bash-language-server",
+          "fish-lsp",
           "clangd",
           "json-lsp",
           "yaml-language-server",
@@ -418,6 +419,7 @@ return {
           zig = { "zigfmt" },
           superhtml = { "superhtmlfmtsuper" },
           sh = { "shfmt" },
+          fish = { "fishfmt" },
           terraform = { "terraform_fmt" },
           tf = { "terraform_fmt" },
           ["terraform-vars"] = { "terraform_fmt" },
@@ -432,6 +434,10 @@ return {
           zigfmt = {
             command = "zig",
             args = { "fmt", "--stdin" },
+            stdin = true,
+          },
+          fishfmt = {
+            command = "fish_indent",
             stdin = true,
           },
           superhtmlfmtsuper = {
