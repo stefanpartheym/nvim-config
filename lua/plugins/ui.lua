@@ -161,6 +161,7 @@ return {
           ["h"] = "close_node",
           ["l"] = "toggle_node",
           ["<Space>"] = "",
+          ["/"] = "",
         },
       },
     },
