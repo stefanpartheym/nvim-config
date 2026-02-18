@@ -243,6 +243,25 @@ return {
 
   -- UI Components
   { "MunifTanjim/nui.nvim", lazy = true },
+
+  -- Inline color highlighting for hex codes, rgb, hsl, etc.
+  {
+    "norcalli/nvim-colorizer.lua",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("colorizer").setup({ "*" }, {
+        RGB = true,
+        RRGGBB = true,
+        RRGGBBAA = true,
+        rgb_fn = true,
+        hsl_fn = true,
+        names = false,
+        css = false,
+        css_fn = false,
+        mode = "background",
+      })
+    end,
+  },
 }
 
 -- vim: ts=2 sts=2 sw=2 et
