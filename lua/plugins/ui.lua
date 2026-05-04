@@ -246,21 +246,12 @@ return {
 
   -- Inline color highlighting for hex codes, rgb, hsl, etc.
   {
-    "norcalli/nvim-colorizer.lua",
+    "brenoprata10/nvim-highlight-colors",
     event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("colorizer").setup({ "*" }, {
-        RGB = true,
-        RRGGBB = true,
-        RRGGBBAA = true,
-        rgb_fn = true,
-        hsl_fn = true,
-        names = false,
-        css = false,
-        css_fn = false,
-        mode = "background",
-      })
-    end,
+    opts = {
+      render = "background",
+      enable_named_colors = false,
+    },
   },
 }
 
