@@ -2,7 +2,6 @@
 return {
   "folke/snacks.nvim",
   dependencies = {
-    "MaximilianLloyd/ascii.nvim",
     "navarasu/onedark.nvim",
   },
   priority = 1000,
@@ -33,7 +32,18 @@ return {
     },
   },
   config = function(_, opts)
-    local logo = require("ascii.text.neovim").sharp
+    local logo = {
+      [[                                                                       ]],
+      [[                                                                     ]],
+      [[       ████ ██████           █████      ██                     ]],
+      [[      ███████████             █████                             ]],
+      [[      █████████ ███████████████████ ███   ███████████   ]],
+      [[     █████████  ███    █████████████ █████ ██████████████   ]],
+      [[    █████████ ██████████ █████████ █████ █████ ████ █████   ]],
+      [[  ███████████ ███    ███ █████████ █████ █████ ████ █████  ]],
+      [[ ██████  █████████████████████ ████ █████ █████ ████ ██████ ]],
+      [[                                                                       ]],
+    }
     opts.dashboard.preset = { header = table.concat(logo, "\n") }
     require("snacks").setup(opts)
   end,
