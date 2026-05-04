@@ -201,6 +201,15 @@ return {
               vim.lsp.stop_client(client.id, true)
             end
           end,
+          -- Workaround: gtkcssls reports diagnosticProvider as a boolean,
+          -- which causes Neovim to error when indexing it as a table.
+          on_init = function(client)
+            local dp = client.server_capabilities.diagnosticProvider
+            if dp == true then
+              client.server_capabilities.diagnosticProvider =
+                { interFileDependencies = false, workspaceDiagnostics = false }
+            end
+          end,
         },
       }
 
