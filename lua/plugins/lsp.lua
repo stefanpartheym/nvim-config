@@ -198,7 +198,7 @@ return {
           on_attach = function(client, bufnr)
             -- Disable (force stop) gtkcssls when editing a regular CSS file.
             if not is_gtkcss(bufnr) then
-              vim.lsp.stop_client(client.id, true)
+              client:stop(true)
             end
           end,
           -- Workaround: gtkcssls reports diagnosticProvider as a boolean,
@@ -242,7 +242,7 @@ return {
             -- the edited file is either in `~/.config/...` or contains
             -- `@define-color`.
             if vim.fn.executable(gtkcssls_cmd) and is_gtkcss(bufnr) then
-              vim.lsp.stop_client(client.id)
+              client:stop()
             end
           end,
         },
