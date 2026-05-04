@@ -11,6 +11,17 @@ return {
     bigfile = { enabled = true },
     quickfile = { enabled = true },
     dashboard = { enabled = true },
+    explorer = {
+      replace_netrw = true,
+    },
+    picker = {
+      sources = {
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
+      },
+    },
     words = { enabled = true },
     notifier = { enabled = true },
     input = { enabled = true },
@@ -50,6 +61,7 @@ return {
   -- stylua: ignore
   keys = {
     { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
+    { "<leader>f", function() Snacks.explorer() end, desc = "Toggle file explorer" },
     { "<leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
     { "<leader>gb", function() Snacks.git.blame_line() end, desc = "Git blame line" },
     { "<leader>gB", function() Snacks.gitbrowse() end, desc = "Git browse" },
@@ -104,6 +116,8 @@ return {
           ["SnacksIndentScope"] = {
             fg = palette.grey,
           },
+          -- Do not dim dotfiles in explorer
+          ["SnacksPickerPathHidden"] = { link = "SnacksPickerFile" },
         })
       end,
     })

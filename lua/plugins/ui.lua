@@ -13,7 +13,7 @@ return {
         end,
         offsets = {
           {
-            filetype = "neo-tree",
+            filetype = "snacks_layout_box",
             text = "",
             highlight = "Directory",
             text_align = "left",
@@ -107,64 +107,9 @@ return {
             -- end,
           },
         },
-        extensions = { "neo-tree", "lazy" },
+        extensions = { "lazy" },
       })
     end,
-  },
-
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    version = "*",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-    keys = {
-      {
-        "<leader>f",
-        function()
-          require("neo-tree.command").execute({ toggle = true })
-        end,
-        desc = "Toggle file tree",
-      },
-    },
-    opts = {
-      event_handlers = {
-        {
-          event = "file_moved",
-          handler = function(data)
-            Snacks.rename.on_rename_file(data.source, data.destination)
-          end,
-        },
-        {
-          event = "file_renamed",
-          handler = function(data)
-            Snacks.rename.on_rename_file(data.source, data.destination)
-          end,
-        },
-      },
-      filesystem = {
-        use_libuv_file_watcher = true,
-        follow_current_file = {
-          enabled = true,
-          leave_dirs_open = false,
-        },
-        filtered_items = {
-          hide_dotfiles = false,
-          hide_gitignored = false,
-        },
-      },
-      window = {
-        mappings = {
-          ["<Bs>"] = "close_node",
-          ["h"] = "close_node",
-          ["l"] = "toggle_node",
-          ["<Space>"] = "",
-          ["/"] = "",
-        },
-      },
-    },
   },
 
   -- Highly experimental plugin that completely replaces the UI for messages, cmdline and the popupmenu.
