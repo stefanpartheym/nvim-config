@@ -127,8 +127,31 @@ return {
           -- or a suggestion from your LSP for this to activate.
           map("<leader>ca", vim.lsp.buf.code_action, "Code action")
 
-          -- Show LspInfo
-          map("<leader>cl", "<Cmd>LspInfo<Cr>", "Show LspInfo")
+          -- Show LSP info
+          map("<leader>cl", function()
+            local clients = vim.lsp.get_clients({ bufnr = 0 })
+            local lines = {}
+            for _, c in ipairs(clients) do
+              local root = c.root_dir or "none"
+              table.insert(lines, "**" .. c.name .. "** (id: " .. c.id .. ")")
+              table.insert(lines, "  root: `" .. root .. "`")
+              table.insert(lines, "")
+            end
+            if #lines == 0 then
+              table.insert(lines, "No LSP clients attached")
+            end
+            Snacks.win({
+              text = lines,
+              width = 0.4,
+              height = 0.3,
+              border = "rounded",
+              title = " LSP Clients ",
+              title_pos = "center",
+              wo = { wrap = true, conceallevel = 3 },
+              keys = { q = "close", ["<Esc>"] = "close" },
+              ft = "markdown",
+            })
+          end, "Show LSP info")
 
           -- Show diagnostics in current line
           map("<leader>cd", vim.diagnostic.open_float, "Line diagnostics")
