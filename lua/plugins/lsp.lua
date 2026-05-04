@@ -259,6 +259,7 @@ return {
             "javascriptreact",
             "typescript",
             "typescriptreact",
+            "vue",
           },
           -- settings = {
           --   complete_function_calls = true,
@@ -278,6 +279,14 @@ return {
           --   },
           -- },
           init_options = {
+            plugins = {
+              {
+                name = "@vue/typescript-plugin",
+                location = vim.fn.stdpath("data")
+                  .. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin",
+                languages = { "vue" },
+              },
+            },
             preferences = {
               quotePreference = "single",
               importModuleSpecifierPreference = "project-relative",
@@ -285,15 +294,8 @@ return {
           },
         },
 
-        -- Vue
-        vue_ls = {
-          init_options = {
-            vue = {
-              -- Use vue_ls's builtin TypeScript language features.
-              hybridMode = false,
-            },
-          },
-        },
+        -- Vue (hybrid mode: vue_ls handles HTML/CSS, ts_ls + @vue/typescript-plugin handles TS)
+        vue_ls = {},
 
         -- JSON
         jsonls = {
