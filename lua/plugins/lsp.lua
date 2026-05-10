@@ -211,9 +211,6 @@ return {
       --- List of manually managed servers (that is, servers not managed by Mason).
       --- @type table<string, vim.lsp.Config>
       local servers = {
-        -- NOTE:
-        -- Setup `zls` manually to always use current version from `.minimum_zig_version` from the `build.zig.zon`.
-        -- See [anyzig](https://github.com/marler8997/anyzig) for more information.
         zls = {},
         gtkcssls = {
           cmd = { gtkcssls_cmd },
