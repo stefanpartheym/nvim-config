@@ -30,10 +30,6 @@ return {
       },
       completion = {
         documentation = { auto_show = true },
-        ghost_text = {
-          -- Disable ghost text to avoid conflicts with windsurf virtual text.
-          enabled = false,
-        },
       },
     },
   },
